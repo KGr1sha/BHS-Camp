@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace BHSCamp
 {
     public abstract class InputController : ScriptableObject
     {

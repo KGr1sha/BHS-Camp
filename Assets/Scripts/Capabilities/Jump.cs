@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace BHSCamp
 {
     [RequireComponent(typeof(Controller))]
     public class Jump : MonoBehaviour
@@ -10,6 +10,7 @@ namespace Shinjingi
         [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
 
+        private Animator _animator;
         private Controller _controller;
         private Rigidbody2D _body;
         private Ground _ground;
@@ -20,18 +21,16 @@ namespace Shinjingi
 
         private bool _desiredJump, _onGround;
 
-
-        // Start is called before the first frame update
         void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
             _controller = GetComponent<Controller>();
+            _animator = GetComponent<Animator>();
 
             _defaultGravityScale = 1f;
         }
 
-        // Update is called once per frame
         void Update()
         {
             _desiredJump |= _controller.input.RetrieveJumpInput();
@@ -41,10 +40,13 @@ namespace Shinjingi
         {
             _onGround = _ground.OnGround;
             _velocity = _body.velocity;
+            _animator.SetFloat("VelocityY", _velocity.y);
 
             if (_onGround)
             {
                 _jumpPhase = 0;
+                if (_velocity.y == 0)
+                    _animator.SetBool("IsJumping", false);
             }
 
             if (_desiredJump)
@@ -72,6 +74,7 @@ namespace Shinjingi
         {
             if (_onGround || _jumpPhase < _maxAirJumps)
             {
+                _animator.SetBool("IsJumping", true);
                 _jumpPhase += 1;
                 
                 _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);

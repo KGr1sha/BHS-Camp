@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace BHSCamp
 {
     [CreateAssetMenu(fileName = "AIController", menuName = "InputController/AIController")]
     public class AIController : InputController

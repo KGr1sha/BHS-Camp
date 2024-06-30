@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace BHSCamp
 {
     public class Controller : MonoBehaviour
     {

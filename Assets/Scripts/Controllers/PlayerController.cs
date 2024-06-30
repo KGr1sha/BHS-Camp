@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace BHSCamp
 {
     [CreateAssetMenu(fileName = "PlayerController", menuName = "InputController/PlayerController")]
     public class PlayerController : InputController
