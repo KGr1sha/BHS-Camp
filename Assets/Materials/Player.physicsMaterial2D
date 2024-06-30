@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bouncy2
-  friction: 0.1
-  bounciness: 0.75
+  m_Name: Player
+  friction: 0.4
+  bounciness: 0
