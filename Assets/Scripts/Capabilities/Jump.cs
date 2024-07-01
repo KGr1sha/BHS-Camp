@@ -45,7 +45,7 @@ namespace BHSCamp
             if (_onGround)
             {
                 _jumpPhase = 0;
-                if (_velocity.y == 0)
+                if (_velocity.y <= 1f)
                     _animator.SetBool("IsJumping", false);
             }
 
