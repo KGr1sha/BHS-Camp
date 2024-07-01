@@ -46,8 +46,8 @@ namespace BHSCamp
             if (_onGround)
             {
                 _jumpPhase = 0;
-                if (Mathf.Abs(_velocity.y) <= _groundedVelocityTreshold)
-                    _animator.SetBool("IsJumping", false);
+                //if (Mathf.Abs(_velocity.y) <= _groundedVelocityTreshold)
+                //    _animator.SetBool("IsJumping", false);
             }
 
             if (_desiredJump)
@@ -75,7 +75,7 @@ namespace BHSCamp
         {
             if (_onGround || _jumpPhase < _maxAirJumps)
             {
-                _animator.SetBool("IsJumping", true);
+                //_animator.SetBool("IsJumping", true);
                 _jumpPhase += 1;
                 
                 _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
