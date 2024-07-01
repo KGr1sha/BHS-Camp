@@ -9,6 +9,7 @@ namespace BHSCamp
         [SerializeField, Range(0, 5)] private int _maxAirJumps = 0;
         [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
+        [SerializeField, Range(0f, 5f)] private float _groundedVelocityTreshold = 2f;
 
         private Animator _animator;
         private Controller _controller;
@@ -45,7 +46,7 @@ namespace BHSCamp
             if (_onGround)
             {
                 _jumpPhase = 0;
-                if (_velocity.y <= 1f)
+                if (Mathf.Abs(_velocity.y) <= _groundedVelocityTreshold)
                     _animator.SetBool("IsJumping", false);
             }
 
