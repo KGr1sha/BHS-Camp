@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace BHS
 {
     [RequireComponent(typeof(Controller))]
     public class Jump : MonoBehaviour
@@ -20,8 +20,6 @@ namespace Shinjingi
 
         private bool _desiredJump, _onGround;
 
-
-        // Start is called before the first frame update
         void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
@@ -31,7 +29,6 @@ namespace Shinjingi
             _defaultGravityScale = 1f;
         }
 
-        // Update is called once per frame
         void Update()
         {
             _desiredJump |= _controller.input.RetrieveJumpInput();

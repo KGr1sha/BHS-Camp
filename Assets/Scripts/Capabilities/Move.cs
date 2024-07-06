@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace BHS
 {
     [RequireComponent(typeof(Controller))]
     public class Move : MonoBehaviour
