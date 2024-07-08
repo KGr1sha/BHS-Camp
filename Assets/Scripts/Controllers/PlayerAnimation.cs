@@ -21,7 +21,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        _inputX = _controller.input.RetrieveMoveInput();    
+        _inputX = _controller.Input.RetrieveMoveInput();    
         if (_inputX != 0)
             transform.localScale = new Vector2(Mathf.Sign(_inputX), transform.localScale.y);
 

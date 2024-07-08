@@ -9,7 +9,6 @@ namespace BHSCamp
         [SerializeField, Range(0, 5)] private int _maxAirJumps = 0;
         [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
-        [SerializeField, Range(0f, 5f)] private float _groundedVelocityTreshold = 2f;
 
         private Controller _controller;
         private Rigidbody2D _body;
@@ -32,7 +31,7 @@ namespace BHSCamp
 
         void Update()
         {
-            _desiredJump |= _controller.input.RetrieveJumpInput();
+            _desiredJump |= _controller.Input.RetrieveJumpInput();
         }
 
         private void FixedUpdate()

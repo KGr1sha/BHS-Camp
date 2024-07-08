@@ -26,7 +26,7 @@ namespace BHSCamp
 
         private void Update()
         {
-            _direction.x = _controller.input.RetrieveMoveInput();
+            _direction.x = _controller.Input.RetrieveMoveInput();
             _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
         }
 
