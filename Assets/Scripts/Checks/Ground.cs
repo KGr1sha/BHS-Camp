@@ -9,18 +9,11 @@ namespace BHSCamp
 
         private Vector2 _normal;
         private PhysicsMaterial2D _material;
-        private Animator _animator;
-
-        private void Awake()
-        {
-            _animator = GetComponent<Animator>();
-        }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
             OnGround = false;
             Friction = 0;
-            _animator.SetBool("IsJumping", true);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -42,7 +35,6 @@ namespace BHSCamp
                 _normal = collision.GetContact(i).normal;
                 OnGround |= _normal.y >= 0.6f;
             }
-            _animator.SetBool("IsJumping", !OnGround);
         }
 
         private void RetrieveFriction(Collision2D collision)

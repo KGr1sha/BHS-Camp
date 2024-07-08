@@ -11,7 +11,6 @@ namespace BHSCamp
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
         [SerializeField, Range(0f, 5f)] private float _groundedVelocityTreshold = 2f;
 
-        private Animator _animator;
         private Controller _controller;
         private Rigidbody2D _body;
         private Ground _ground;
@@ -27,7 +26,6 @@ namespace BHSCamp
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
             _controller = GetComponent<Controller>();
-            _animator = GetComponent<Animator>();
 
             _defaultGravityScale = 1f;
         }
@@ -41,13 +39,10 @@ namespace BHSCamp
         {
             _onGround = _ground.OnGround;
             _velocity = _body.velocity;
-            _animator.SetFloat("VelocityY", _velocity.y);
 
             if (_onGround)
             {
                 _jumpPhase = 0;
-                //if (Mathf.Abs(_velocity.y) <= _groundedVelocityTreshold)
-                //    _animator.SetBool("IsJumping", false);
             }
 
             if (_desiredJump)
@@ -75,7 +70,6 @@ namespace BHSCamp
         {
             if (_onGround || _jumpPhase < _maxAirJumps)
             {
-                //_animator.SetBool("IsJumping", true);
                 _jumpPhase += 1;
                 
                 _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
