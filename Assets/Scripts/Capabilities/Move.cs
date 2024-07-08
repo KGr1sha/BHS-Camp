@@ -14,7 +14,7 @@ namespace BHS
         private Rigidbody2D _body;
         private Ground _ground;
 
-        private float _maxSpeedChange, _acceleration;
+        private float _acceleration;
         private bool _onGround;
 
         private void Awake()
@@ -36,8 +36,7 @@ namespace BHS
             _velocity = _body.velocity;
 
             _acceleration = _onGround ? _maxAcceleration : _maxAirAcceleration;
-            _maxSpeedChange = _acceleration * Time.deltaTime;
-            _velocity.x = Mathf.MoveTowards(_velocity.x, _desiredVelocity.x, _maxSpeedChange);
+            _velocity.x = Mathf.MoveTowards(_velocity.x, _desiredVelocity.x, _acceleration);
 
             _body.velocity = _velocity;
         }
