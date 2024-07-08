@@ -1401,7 +1401,7 @@ MonoBehaviour:
   _maxAirJumps: 1
   _downwardMovementMultiplier: 3
   _upwardMovementMultiplier: 1.7
-  _groundedVelocityTreshold: 2
+  _jumpWindowTime: 0.1
 --- !u!114 &420877390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,8 +1415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 4
-  _maxAcceleration: 35
-  _maxAirAcceleration: 20
+  _maxAcceleration: 0.3
+  _maxAirAcceleration: 2
 --- !u!114 &420877391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,7 +1429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429448dce0a73c245adbf32c0da2a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: dc54f7c808283ad4ba19bfdb449894e8, type: 2}
+  Input: {fileID: 11400000, guid: dc54f7c808283ad4ba19bfdb449894e8, type: 2}
 --- !u!114 &420877392
 MonoBehaviour:
   m_ObjectHideFlags: 0

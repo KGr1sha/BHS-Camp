@@ -6,15 +6,15 @@ namespace BHSCamp
     public class Move : MonoBehaviour
     {
         [SerializeField, Range(0f, 100f)] private float _maxSpeed = 4f;
-        [SerializeField, Range(0f, 100f)] private float _maxAcceleration = 35f;
-        [SerializeField, Range(0f, 100f)] private float _maxAirAcceleration = 20f;
+        [SerializeField, Range(0f, 5f)] private float _maxAcceleration = 0.3f;
+        [SerializeField, Range(0f, 10f)] private float _maxAirAcceleration = 2f;
 
         private Controller _controller;
         private Vector2 _direction, _desiredVelocity, _velocity;
         private Rigidbody2D _body;
         private Ground _ground;
 
-        private float _maxSpeedChange, _acceleration;
+        private float _acceleration;
         private bool _onGround;
 
         private void Awake()
@@ -36,8 +36,7 @@ namespace BHSCamp
             _velocity = _body.velocity;
 
             _acceleration = _onGround ? _maxAcceleration : _maxAirAcceleration;
-            _maxSpeedChange = _acceleration * Time.deltaTime;
-            _velocity.x = Mathf.MoveTowards(_velocity.x, _desiredVelocity.x, _maxSpeedChange);
+            _velocity.x = Mathf.MoveTowards(_velocity.x, _desiredVelocity.x, _acceleration);
 
             _body.velocity = _velocity;
         }

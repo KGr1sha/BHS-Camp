@@ -9,6 +9,7 @@ namespace BHSCamp
         [SerializeField, Range(0, 5)] private int _maxAirJumps = 0;
         [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
+        [SerializeField] private float _jumpWindowTime;
 
         private Controller _controller;
         private Rigidbody2D _body;
@@ -32,8 +33,15 @@ namespace BHSCamp
         void Update()
         {
             _desiredJump |= _controller.Input.RetrieveJumpInput();
+            if (_desiredJump)
+                Invoke(nameof(ResetJump), _jumpWindowTime);
         }
 
+        private void ResetJump()
+        {
+            _desiredJump = false;
+        }
+        
         private void FixedUpdate()
         {
             _onGround = _ground.OnGround;
@@ -46,7 +54,6 @@ namespace BHSCamp
 
             if (_desiredJump)
             {
-                _desiredJump = false;
                 JumpAction();
             }
 
@@ -69,6 +76,8 @@ namespace BHSCamp
         {
             if (_onGround || _jumpPhase < _maxAirJumps)
             {
+                _desiredJump = false;
+
                 _jumpPhase += 1;
                 
                 _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
