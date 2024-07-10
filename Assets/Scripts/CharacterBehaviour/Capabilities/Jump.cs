@@ -9,9 +9,8 @@ namespace BHSCamp
         [SerializeField, Range(0, 5)] private int _maxAirJumps = 0;
         [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
-        [SerializeField, Range(0f, 5f)] private float _groundedVelocityTreshold = 2f;
+        [SerializeField] private float _jumpWindowTime;
 
-        private Animator _animator;
         private Controller _controller;
         private Rigidbody2D _body;
         private Ground _ground;
@@ -27,32 +26,34 @@ namespace BHSCamp
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
             _controller = GetComponent<Controller>();
-            _animator = GetComponent<Animator>();
 
             _defaultGravityScale = 1f;
         }
 
         void Update()
         {
-            _desiredJump |= _controller.input.RetrieveJumpInput();
+            _desiredJump |= _controller.Input.RetrieveJumpInput();
+            if (_desiredJump)
+                Invoke(nameof(ResetJump), _jumpWindowTime);
         }
 
+        private void ResetJump()
+        {
+            _desiredJump = false;
+        }
+        
         private void FixedUpdate()
         {
             _onGround = _ground.OnGround;
             _velocity = _body.velocity;
-            _animator.SetFloat("VelocityY", _velocity.y);
 
             if (_onGround)
             {
                 _jumpPhase = 0;
-                //if (Mathf.Abs(_velocity.y) <= _groundedVelocityTreshold)
-                //    _animator.SetBool("IsJumping", false);
             }
 
             if (_desiredJump)
             {
-                _desiredJump = false;
                 JumpAction();
             }
 
@@ -75,7 +76,8 @@ namespace BHSCamp
         {
             if (_onGround || _jumpPhase < _maxAirJumps)
             {
-                //_animator.SetBool("IsJumping", true);
+                _desiredJump = false;
+
                 _jumpPhase += 1;
                 
                 _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
