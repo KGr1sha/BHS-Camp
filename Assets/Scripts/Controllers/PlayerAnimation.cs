@@ -23,7 +23,10 @@ public class PlayerAnimation : MonoBehaviour
     {
         _inputX = _controller.Input.RetrieveMoveInput();    
         if (_inputX != 0)
-            transform.localScale = new Vector2(Mathf.Sign(_inputX), transform.localScale.y);
+            transform.localScale = new Vector2(
+                Mathf.Sign(_inputX) * Mathf.Abs(transform.localScale.x),
+                transform.localScale.y
+            );
 
         _animator.SetFloat("VelocityX", Mathf.Abs(_body.velocity.x));
         _animator.SetFloat("VelocityY", _body.velocity.y);
