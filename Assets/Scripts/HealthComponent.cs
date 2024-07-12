@@ -6,7 +6,7 @@ namespace BHSCamp
     public class HealthComponent : MonoBehaviour, IDamageable
     {
         [SerializeField] private float _maxHealth = 100f;
-        private float _currentHealth;
+        [SerializeField] private float _currentHealth;
 
         #region Events
         public UnityEvent OnDeath;

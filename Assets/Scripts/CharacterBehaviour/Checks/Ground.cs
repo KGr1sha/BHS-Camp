@@ -39,9 +39,13 @@ namespace BHSCamp
 
         private void RetrieveFriction(Collision2D collision)
         {
+            Friction = 0;
+
+            if (collision.rigidbody == null)
+                return;
+
             _material = collision.rigidbody.sharedMaterial;
 
-            Friction = 0;
 
             if(_material != null)
             {
