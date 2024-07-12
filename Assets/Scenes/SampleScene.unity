@@ -5625,20 +5625,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5172477211029170028, guid: d2a33c7401c41d6438eed36dbafe8514, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5172477211029170028, guid: d2a33c7401c41d6438eed36dbafe8514, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 6983713257412446349, guid: d2a33c7401c41d6438eed36dbafe8514, type: 3}
       propertyPath: m_Name
       value: Suriken
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5172477211029170028, guid: d2a33c7401c41d6438eed36dbafe8514, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
