@@ -1,33 +1,41 @@
 using System;
 using System.Collections.Generic;
 
-public class Fsm
+namespace BHSCamp.FSM
 {
-    private FsmState CurrentState { get; set; }
-    private Dictionary<Type, FsmState> _states = new();
-
-    public void AddState(FsmState state)
+    public class Fsm
     {
-        _states.Add(state.GetType(), state);
-    }
+        private FsmState CurrentState { get; set; }
+        private Dictionary<Type, FsmState> _states = new();
 
-    public void SetState<T>() where T : FsmState
-    {
-        var type = typeof(T);
-
-        if (CurrentState.GetType() == type)
-            return;
-
-        if (_states.TryGetValue(type, out var newState))
+        public void AddState(FsmState state)
         {
-            CurrentState?.Exit();
-            CurrentState = newState;
-            CurrentState.Enter();
+            _states.Add(state.GetType(), state);
         }
-    }
 
-    public void Update()
-    {
-        CurrentState?.Update();
+        public void SetState<T>() where T : FsmState
+        {
+            var type = typeof(T);
+
+            if (CurrentState?.GetType() == type)
+                return;
+
+            if (_states.TryGetValue(type, out var newState))
+            {
+                CurrentState?.Exit();
+                CurrentState = newState;
+                CurrentState.Enter();
+            }
+        }
+
+        public void Update(float deltaTime)
+        {
+            CurrentState?.Update(deltaTime);
+        }
+
+        public void FixedUpdate()
+        {
+            CurrentState?.FixedUpdate();
+        }
     }
 }

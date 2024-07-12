@@ -1,13 +1,17 @@
-public abstract class FsmState
+namespace BHSCamp.FSM
 {
-    protected readonly Fsm Fsm;
-
-    public FsmState(Fsm fsm)
+    public abstract class FsmState
     {
-        Fsm = fsm;
-    }
+        protected readonly Fsm Fsm;
 
-    public virtual void Enter() {} 
-    public virtual void Exit() {}
-    public virtual void Update() {}
+        public FsmState(Fsm fsm)
+        {
+            Fsm = fsm;
+        }
+
+        public virtual void Enter() {} 
+        public virtual void Exit() {}
+        public virtual void Update(float deltaTime) {}
+        public virtual void FixedUpdate() {}
+    }
 }

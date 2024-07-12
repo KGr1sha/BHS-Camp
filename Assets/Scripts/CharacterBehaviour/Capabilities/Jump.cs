@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BHSCamp
 {
-    [RequireComponent(typeof(Controller))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Jump : MonoBehaviour
     {
         [SerializeField, Range(0f, 10f)] private float _jumpHeight = 3f;
@@ -11,7 +11,6 @@ namespace BHSCamp
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
         [SerializeField] private float _jumpWindowTime;
 
-        private Controller _controller;
         private Rigidbody2D _body;
         private Ground _ground;
         private Vector2 _velocity;
@@ -25,16 +24,14 @@ namespace BHSCamp
         {
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
-            _controller = GetComponent<Controller>();
 
             _defaultGravityScale = 1f;
         }
 
-        void Update()
+        public void Action()
         {
-            _desiredJump |= _controller.Input.RetrieveJumpInput();
-            if (_desiredJump)
-                Invoke(nameof(ResetJump), _jumpWindowTime);
+            _desiredJump = true;
+            Invoke(nameof(ResetJump), _jumpWindowTime);
         }
 
         private void ResetJump()

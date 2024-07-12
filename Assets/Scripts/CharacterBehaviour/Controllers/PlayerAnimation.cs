@@ -21,7 +21,6 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        _inputX = _controller.Input.RetrieveMoveInput();    
         if (_inputX != 0)
             transform.localScale = new Vector2(
                 Mathf.Sign(_inputX) * Mathf.Abs(transform.localScale.x),
@@ -31,5 +30,10 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetFloat("VelocityX", Mathf.Abs(_body.velocity.x));
         _animator.SetFloat("VelocityY", _body.velocity.y);
         _animator.SetBool("IsJumping", !_ground.OnGround);
+    }
+
+    public void SetInputX(float inputX)
+    {
+        _inputX = inputX;
     }
 }

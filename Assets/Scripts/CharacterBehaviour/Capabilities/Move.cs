@@ -2,18 +2,17 @@ using UnityEngine;
 
 namespace BHSCamp
 {
-    [RequireComponent(typeof(Controller))]
-    public class Move : MonoBehaviour
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class Move : MonoBehaviour, IMove
     {
-        [SerializeField, Range(0f, 100f)] private float _maxSpeed = 4f;
         [SerializeField, Range(0f, 5f)] private float _maxAcceleration = 0.3f;
         [SerializeField, Range(0f, 10f)] private float _maxAirAcceleration = 2f;
 
-        private Controller _controller;
         private Vector2 _direction, _desiredVelocity, _velocity;
         private Rigidbody2D _body;
         private Ground _ground;
 
+        private float _maxSpeed;
         private float _acceleration;
         private bool _onGround;
 
@@ -21,12 +20,12 @@ namespace BHSCamp
         {
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
-            _controller = GetComponent<Controller>();
         }
 
-        private void Update()
+        public void SetDirectionX(float directionX, float speed)
         {
-            _direction.x = _controller.Input.RetrieveMoveInput();
+            _direction.x = directionX;
+            _maxSpeed = speed;
             _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
         }
 
