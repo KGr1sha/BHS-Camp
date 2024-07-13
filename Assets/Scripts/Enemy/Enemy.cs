@@ -55,12 +55,16 @@ namespace BHSCamp
 
         public RaycastHit2D CheckForPlayer()
         {
+            Vector2 origin = new(
+                transform.position.x + (_forwardVector.x * _attackRange.x / 2),
+                transform.position.y
+            );
             RaycastHit2D hit = Physics2D.BoxCast(
-                transform.position,
+                origin,
                 _attackRange,
                 0f,
                 _forwardVector,
-                _attackRange.x / 2,
+                0,
                 _playerLayerMask
             );
             return hit;
@@ -69,7 +73,7 @@ namespace BHSCamp
         public void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-
+            if (_forwardVector == null) return;
             Vector2 origin = new(
                 transform.position.x + (_forwardVector.x * _attackRange.x / 2),
                 transform.position.y

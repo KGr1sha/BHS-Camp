@@ -267,7 +267,7 @@ MonoBehaviour:
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  _attackRange: {x: 1, y: 0.5}
+  _attackRange: {x: 2, y: 0.5}
 --- !u!212 &259101916
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5631,7 +5631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6983713257412446349, guid: d2a33c7401c41d6438eed36dbafe8514, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
