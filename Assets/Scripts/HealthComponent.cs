@@ -6,7 +6,7 @@ namespace BHSCamp
     public class HealthComponent : MonoBehaviour, IDamageable
     {
         [SerializeField] private float _maxHealth = 100f;
-        [SerializeField] private float _currentHealth;
+        private float _currentHealth;
 
         #region Events
         public UnityEvent OnDeath;
@@ -32,7 +32,7 @@ namespace BHSCamp
         private void Die()
         {
             OnDeath.Invoke();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         public void TakeDamage(float amount)
@@ -40,10 +40,15 @@ namespace BHSCamp
             if (amount < 0) return;
 
             _currentHealth -= amount;
-            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
-            OnDamageTaken.Invoke();
 
-            if (_currentHealth <= 0) Die();
+            if (_currentHealth <= 0) 
+            {
+                Die();
+            }
+            else
+            {
+                OnDamageTaken.Invoke();
+            }
         }
 
         //TODO: Homework - transfer SetMaxHealth() && RestoreHealth() to IHealable interface
