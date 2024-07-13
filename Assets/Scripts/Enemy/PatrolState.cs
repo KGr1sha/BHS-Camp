@@ -39,6 +39,7 @@ namespace BHSCamp
             toNext.Normalize();
 
             _move.SetDirectionX(toNext.x, _speed);
+            _enemy.SetForwardVector(new Vector2(toNext.x, 0));
 
             if (Vector3.Distance(_currentPosition, _waypoints[_currentIndex].position) < 0.1f)
             {
