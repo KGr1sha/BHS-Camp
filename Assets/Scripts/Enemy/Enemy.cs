@@ -15,42 +15,39 @@ namespace BHSCamp
         [SerializeField] private Vector2 _attackRange;
 
         private Animator _animator;
-        private Rigidbody2D _body;
         private IMove _move;
 
         private Fsm _fsm;
         private Vector2 _forwardVector;
 
-        private void Start()
+        private void Awake()
         {
             _move = GetComponent<IMove>();
             _animator = GetComponent<Animator>();
-            _body = GetComponent<Rigidbody2D>();
+        }
+
+        private void Start()
+        {
             _fsm = new Fsm();
             _fsm.AddState(new PatrolState(_fsm, this, _patrolSpeed, _waypoints, _move, transform));
             _fsm.AddState(new AttackState(_fsm, this, _attackCD, _animator));
             _fsm.SetState<PatrolState>();
+            SetForwardVector(new Vector2(transform.localScale.x, 0));
         }
 
         private void Update()
         {
             _fsm.Update(Time.deltaTime);
-            if (_body.velocity.x != 0)
-                transform.localScale = new Vector3(
-                    Mathf.Abs(transform.localScale.x) * Mathf.Sign(_body.velocity.x),
-                    transform.localScale.y,
-                    transform.localScale.z
-                );
-        }
-
-        private void FixedUpdate()
-        {
-            _fsm.FixedUpdate();
         }
 
         public void SetForwardVector(Vector2 forward)
         {
             _forwardVector = forward;
+            transform.localScale = new Vector3(
+                Mathf.Abs(transform.localScale.x) * _forwardVector.x,
+                transform.localScale.y,
+                transform.localScale.z
+            );
         }
 
         public RaycastHit2D CheckForPlayer()

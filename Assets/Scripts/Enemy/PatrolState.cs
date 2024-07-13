@@ -36,14 +36,14 @@ namespace BHSCamp
         private void Patrol()
         {
             Vector3 toNext = _waypoints[_currentIndex].position - _currentPosition; 
-            toNext.Normalize();
+            toNext = new Vector2(toNext.x, 0).normalized;
 
             _move.SetDirectionX(toNext.x, _speed);
-            _enemy.SetForwardVector(new Vector2(toNext.x, 0));
 
-            if (Vector3.Distance(_currentPosition, _waypoints[_currentIndex].position) < 0.1f)
+            if (Mathf.Abs(_currentPosition.x - _waypoints[_currentIndex].position.x) < 0.1f)
             {
                 _currentIndex = (_currentIndex + 1) % _waypoints.Length;
+                _enemy.SetForwardVector(-toNext);
             }
         }
 
