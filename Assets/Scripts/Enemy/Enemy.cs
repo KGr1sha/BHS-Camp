@@ -9,17 +9,17 @@ namespace BHSCamp
         [SerializeField] private float _patrolSpeed = 5f;
         [SerializeField] private Transform[] _waypoints;
 
-        [Header("Box Cast")]
-        [SerializeField] private LayerMask _playerLayerMask;
-        [SerializeField] private Vector2 _boxCastSize;
         [Header("Attack")]
         [SerializeField] private float _attackCD = 1f;
+        [SerializeField] private LayerMask _playerLayerMask;
+        [SerializeField] private Vector2 _attackRange;
 
         private Animator _animator;
         private Rigidbody2D _body;
+        private IMove _move;
 
         private Fsm _fsm;
-        private IMove _move;
+        private Vector2 _forwardVector;
 
         private void Start()
         {
@@ -30,19 +30,6 @@ namespace BHSCamp
             _fsm.AddState(new PatrolState(_fsm, this, _patrolSpeed, _waypoints, _move, transform));
             _fsm.AddState(new AttackState(_fsm, this, _attackCD, _animator));
             _fsm.SetState<PatrolState>();
-        }
-
-        public RaycastHit2D CheckForPlayer()
-        {
-            RaycastHit2D hit = Physics2D.BoxCast(
-                transform.position,
-                _boxCastSize,
-                0f,
-                transform.right,
-                _boxCastSize.x / 2,
-                _playerLayerMask
-            );
-            return hit;
         }
 
         private void Update()
@@ -61,15 +48,33 @@ namespace BHSCamp
             _fsm.FixedUpdate();
         }
 
+        public void SetForwardVector(Vector2 forward)
+        {
+            _forwardVector = forward;
+        }
+
+        public RaycastHit2D CheckForPlayer()
+        {
+            RaycastHit2D hit = Physics2D.BoxCast(
+                transform.position,
+                _attackRange,
+                0f,
+                _forwardVector,
+                _attackRange.x / 2,
+                _playerLayerMask
+            );
+            return hit;
+        }
+
         public void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
 
-            Vector2 origin = new Vector2(
-                transform.right.x * (transform.position.x + _boxCastSize.x / 2),
+            Vector2 origin = new(
+                transform.position.x + (_forwardVector.x * _attackRange.x / 2),
                 transform.position.y
             );
-            Gizmos.DrawWireCube(origin, _boxCastSize);
+            Gizmos.DrawWireCube(origin, _attackRange);
         }
     }
 }
