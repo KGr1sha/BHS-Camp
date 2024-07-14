@@ -9,10 +9,10 @@ namespace BHSCamp
         private float _exitTime;
         private float _timer;
 
-        public HurtState(Fsm fsm, float exitTime, Animator animator) : base(fsm)
+        public HurtState(Fsm fsm, PatrolEnemy enemy, float exitTime) : base(fsm)
         {
             _exitTime = exitTime;
-            _animator = animator;
+            _animator = enemy.GetComponent<Animator>();
         }
 
         public override void Enter()

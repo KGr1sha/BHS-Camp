@@ -5,19 +5,23 @@ namespace BHSCamp
 {
     public class PatrolState : FsmState
     {
-        private Enemy _enemy;
+        private PatrolEnemy _enemy;
+        private Animator _animator;
+        private Rigidbody2D _body;
         private float _speed;
         private Transform[] _waypoints;
         private IMove _move;
         private int _currentIndex;
         private Vector3 _currentPosition => _enemy.transform.position;
 
-        public PatrolState(Fsm fsm, Enemy enemy, float speed, Transform[] waypoints) : base(fsm)
+        public PatrolState(Fsm fsm, PatrolEnemy enemy, float speed, Transform[] waypoints) : base(fsm)
         {
             _enemy = enemy;
             _speed = speed;
             _waypoints = waypoints;
             _move = enemy.GetComponent<IMove>();
+            _animator = enemy.GetComponent<Animator>();
+            _body = enemy.GetComponent<Rigidbody2D>();
         }
 
         public override void Update(float deltaTime)
@@ -38,6 +42,7 @@ namespace BHSCamp
 
             _enemy.SetForwardVector(toNext);
             _move.SetDirection(toNext, _speed);
+            _animator.SetFloat("VelocityX", Mathf.Abs(_body.velocity.x));
 
             if (Mathf.Abs(_currentPosition.x - _waypoints[_currentIndex].position.x) < 0.1f)
             {
@@ -48,7 +53,7 @@ namespace BHSCamp
 
         private void CheckForPlayer()
         {
-            if (_enemy.CheckForPlayer())
+            if (_enemy is EnemyWithAttack e && e.PlayerInSight())
                 Fsm.SetState<AttackState>();
         }
     }

@@ -5,7 +5,7 @@ namespace BHSCamp
     [RequireComponent(typeof(Collision2D))]
     public class InstantDamageDealer : MonoBehaviour
     {
-        [SerializeField] private float _instantDamage;
+        [SerializeField] private int _instantDamage;
         [SerializeField] private bool _knockbackApplied;
         [SerializeField] private float _knockbackForce;
 

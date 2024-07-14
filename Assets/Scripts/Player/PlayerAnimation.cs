@@ -5,7 +5,7 @@ namespace BHSCamp
     [RequireComponent(typeof(Animator))]
     public class PlayerAnimation : MonoBehaviour
     {
-        private HealthComponent _healthComponent;
+        private Health _healthComponent;
         private Animator _animator;
         private Rigidbody2D _body;
         private Ground _ground;
@@ -27,7 +27,7 @@ namespace BHSCamp
             _animator = GetComponent<Animator>();
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
-            _healthComponent = GetComponent<HealthComponent>();
+            _healthComponent = GetComponent<Health>();
         }
 
         private void Update()
@@ -51,7 +51,7 @@ namespace BHSCamp
             _animator.SetBool("IsDead", true);
         }
 
-        private void EnableHurtParameter()
+        private void EnableHurtParameter(int damage)
         {
             _animator.SetBool("Hurt", true);
         }

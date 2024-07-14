@@ -8,6 +8,7 @@ namespace BHSCamp
         [SerializeField] protected AnimationClip _attackAnimationClip;
         [SerializeField] protected float _attackCD;
         protected Animator _animator;
+        protected Vector3 _target;
 
         public abstract void BeginAttack();
         public abstract void EndAttack();
@@ -20,6 +21,11 @@ namespace BHSCamp
         public float GetAttackCD()
         {
             return _attackCD;
+        }
+
+        public void SetTarget(Vector3 target)
+        {
+            _target = target;
         }
     }
 }

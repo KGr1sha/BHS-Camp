@@ -1,16 +1,14 @@
 using BHSCamp.FSM;
-using UnityEngine;
 
 namespace BHSCamp
 {
     public class IdleState : FsmState
     {
-        private Enemy _enemy;
+        private PatrolEnemy _enemy;
         private float _exitTime;
         private float _timer;
 
-
-        public IdleState(Fsm fsm, Enemy enemy, float exitTime) : base(fsm)
+        public IdleState(Fsm fsm, PatrolEnemy enemy, float exitTime) : base(fsm)
         {
             _enemy = enemy;
             _exitTime = exitTime;
@@ -27,7 +25,7 @@ namespace BHSCamp
             if (_timer > _exitTime)
                 Fsm.SetState<PatrolState>();
 
-            if (_enemy.CheckForPlayer())
+            if (_enemy is EnemyWithAttack e && e.PlayerInSight())
                 Fsm.SetState<AttackState>();
         }
     }

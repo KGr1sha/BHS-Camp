@@ -6,7 +6,7 @@ namespace BHSCamp
     public class PeriodicDamageDealer : MonoBehaviour
     {
         [Header("MODE: Periodic damage")]
-        [SerializeField] private float _periodicDamage;
+        [SerializeField] private int _periodicDamage;
         [SerializeField] private float _periodicDamageCooldown;
         private float _periodicDamageTimer;
 
@@ -30,7 +30,8 @@ namespace BHSCamp
             {
                 _periodicDamageTimer = 0;
                 damageable.TakeDamage(_periodicDamage);
-                print($"Damage taken: {_periodicDamage}");
+                MonoBehaviour mb = (MonoBehaviour) damageable;
+                print($"Dealt {_periodicDamage} to {mb.name}");
             }
         }
     }
