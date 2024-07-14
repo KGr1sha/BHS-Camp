@@ -13,9 +13,11 @@ namespace BHSCamp
         [SerializeField] private float _attackCD = 1f;
         [SerializeField] private LayerMask _playerLayerMask;
         [SerializeField] private Vector2 _attackRange;
+        [SerializeField] private AnimationClip _attackAnimationClip;
 
         private Animator _animator;
         private IMove _move;
+        private IAttack _attack;
 
         private Fsm _fsm;
         private Vector2 _forwardVector;
@@ -24,13 +26,15 @@ namespace BHSCamp
         {
             _move = GetComponent<IMove>();
             _animator = GetComponent<Animator>();
+            _attack = GetComponent<IAttack>();
         }
 
         private void Start()
         {
+            float attackAnimationTime = _attackAnimationClip.averageDuration;
             _fsm = new Fsm();
             _fsm.AddState(new PatrolState(_fsm, this, _patrolSpeed, _waypoints, _move, transform));
-            _fsm.AddState(new AttackState(_fsm, this, _attackCD, _animator));
+            _fsm.AddState(new AttackState(_fsm, this, _attackCD, attackAnimationTime, _animator));
             _fsm.SetState<PatrolState>();
             SetForwardVector(new Vector2(transform.localScale.x, 0));
         }

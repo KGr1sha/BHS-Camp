@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BHSCamp
@@ -6,8 +7,10 @@ namespace BHSCamp
     {
         [SerializeField] private float _speed = 5f;
         private float _horizontal;
+        private bool _leftClicked;
         private IMove _movable;
         private Jump _jump;
+        private IAttack _attack;
         private PlayerAnimation _animation;
 
         private void Awake()
@@ -15,12 +18,21 @@ namespace BHSCamp
             _movable = GetComponent<IMove>();
             _jump = GetComponent<Jump>();
             _animation = GetComponent<PlayerAnimation>();
+            _attack = GetComponent<IAttack>();
         }
 
         private void Update()
         {
             _horizontal = Input.GetAxisRaw("Horizontal");
+            _leftClicked = Input.GetButtonDown("Attack");
+
             _movable.SetDirectionX(_horizontal, _speed);
+            if (_leftClicked)
+            {
+                //_attack.Action();
+                _animation.Attack();
+            } 
+
             _animation.SetInputX(_horizontal);
 
             if (Input.GetButtonDown("Jump"))

@@ -1,78 +1,93 @@
-using BHSCamp;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-public class PlayerAnimation : MonoBehaviour
+namespace BHSCamp
 {
-    private const string HurtTrigger = "Hurt";
-    private const string IsDeadAnimatorParameter = "IsDead";
-
-    private Animator _animator;
-    private Rigidbody2D _body;
-    private Ground _ground;
-
-    private HealthComponent _healthComponent;
-    private bool isDead = false;
-
-    private float _inputX;
-
-    private void Awake()
+    [RequireComponent(typeof(Animator))]
+    public class PlayerAnimation : MonoBehaviour
     {
-        _animator = GetComponent<Animator>();
-        _body = GetComponent<Rigidbody2D>();
-        _ground = GetComponent<Ground>();
-        _healthComponent = GetComponent<HealthComponent>();
-    }
+        [SerializeField] private AnimationClip _attackAnimation;
+        private const string HurtTrigger = "Hurt";
+        private const string IsDeadAnimatorParameter = "IsDead";
 
-    private void Update()
-    {
-        if (_inputX != 0)
-            transform.localScale = new Vector2(
-                Mathf.Sign(_inputX) * Mathf.Abs(transform.localScale.x),
-                transform.localScale.y
-            );
+        private Animator _animator;
+        private Rigidbody2D _body;
+        private Ground _ground;
 
-        _animator.SetFloat("VelocityX", Mathf.Abs(_body.velocity.x));
-        _animator.SetFloat("VelocityY", _body.velocity.y);
-        _animator.SetBool("IsJumping", !_ground.OnGround);
-        _animator.SetBool(IsDeadAnimatorParameter, isDead);
-    }
+        private HealthComponent _healthComponent;
+        private bool isDead = false;
 
-    private void OnEnable()
-    {
-        if (_healthComponent != null)
+        private float _inputX;
+
+        private void OnEnable()
         {
-            _healthComponent.OnDamageTaken.AddListener(TriggerHurtAnimation);
-            _healthComponent.OnDeath.AddListener(EnableIsDeadParameter);
+            if (_healthComponent != null)
+            {
+                _healthComponent.OnDamageTaken.AddListener(TriggerHurtAnimation);
+                _healthComponent.OnDeath.AddListener(EnableIsDeadParameter);
+            }
         }
-    }
 
-    private void OnDisable()
-    {
-        if (_healthComponent != null)
+        private void OnDisable()
         {
-            _healthComponent.OnDamageTaken.RemoveAllListeners();
-            _healthComponent.OnDeath.RemoveAllListeners();
+            if (_healthComponent != null)
+            {
+                _healthComponent.OnDamageTaken.RemoveAllListeners();
+                _healthComponent.OnDeath.RemoveAllListeners();
+            }
         }
-    }
 
-    public void SetInputX(float inputX)
-    {
-        _inputX = inputX;
-    }
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+            _body = GetComponent<Rigidbody2D>();
+            _ground = GetComponent<Ground>();
+            _healthComponent = GetComponent<HealthComponent>();
+        }
 
-    public void EnableIsDeadParameter()
-    {
-        isDead = true;
-    }
+        private void Update()
+        {
+            if (_inputX != 0)
+                transform.localScale = new Vector2(
+                    Mathf.Sign(_inputX) * Mathf.Abs(transform.localScale.x),
+                    transform.localScale.y
+                );
 
-    public void DisableIsDeadParameter()
-    {
-        isDead = false;
-    }
+            _animator.SetFloat("VelocityX", Mathf.Abs(_body.velocity.x));
+            _animator.SetFloat("VelocityY", _body.velocity.y);
+            _animator.SetBool("IsJumping", !_ground.OnGround);
+            _animator.SetBool(IsDeadAnimatorParameter, isDead);
+        }
 
-    private void TriggerHurtAnimation()
-    {
-        _animator.SetTrigger(HurtTrigger);
+        public void Attack()
+        {
+            _animator.SetBool("IsAttacking", true);
+            float attackAnimationTime = _attackAnimation.averageDuration;
+            Invoke(nameof(ResetAttack), attackAnimationTime);
+        }
+
+        private void ResetAttack()
+        {
+            _animator.SetBool("IsAttacking", false);
+        }
+
+        public void SetInputX(float inputX)
+        {
+            _inputX = inputX;
+        }
+
+        public void EnableIsDeadParameter()
+        {
+            isDead = true;
+        }
+
+        public void DisableIsDeadParameter()
+        {
+            isDead = false;
+        }
+
+        private void TriggerHurtAnimation()
+        {
+            _animator.SetTrigger(HurtTrigger);
+        }
     }
 }

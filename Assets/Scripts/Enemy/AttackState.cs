@@ -11,12 +11,14 @@ namespace BHSCamp
 
         private float timer;
         private bool _canExit;
+        private float _attackTime;
 
-        public AttackState(Fsm fsm, Enemy enemy, float attackCD, Animator animator) : base(fsm)
+        public AttackState(Fsm fsm, Enemy enemy, float attackCD, float attackAnimationTime, Animator animator) : base(fsm)
         {
             _attackCD = attackCD;
             _enemy = enemy;
             _animator = animator;
+            _attackTime = attackAnimationTime;
         }
 
         public override void Enter()
@@ -34,8 +36,11 @@ namespace BHSCamp
                 timer = 0;
             }
 
-            if (_canExit == false && timer >= 1f)
+            if (_canExit == false && _attackTime != 0 && timer >= _attackTime)
+            {
+                _animator.SetBool("IsAttacking", false);
                 _canExit = true;
+            }
 
             if (IsPlayerInRange() == false && _canExit)
             {
@@ -45,7 +50,8 @@ namespace BHSCamp
 
         private void Attack()
         {
-            _animator.SetTrigger("Attack");
+            _animator.SetBool("IsAttacking", true);
+            _attackTime = _animator.GetCurrentAnimatorClipInfo(0).Length;
             _canExit = false;
         }
 
