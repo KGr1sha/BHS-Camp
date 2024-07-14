@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BHSCamp
@@ -10,13 +9,17 @@ namespace BHSCamp
         private bool _leftClicked;
         private IMove _movable;
         private Jump _jump;
+        private AttackBase _attack;
         private PlayerAnimation _animation;
+        private Ground _ground;
 
         private void Awake()
         {
             _movable = GetComponent<IMove>();
             _jump = GetComponent<Jump>();
             _animation = GetComponent<PlayerAnimation>();
+            _attack = GetComponent<AttackBase>();
+            _ground = GetComponent<Ground>();
         }
 
         private void Update()
@@ -24,10 +27,11 @@ namespace BHSCamp
             _horizontal = Input.GetAxisRaw("Horizontal");
             _leftClicked = Input.GetButtonDown("Attack");
 
-            _movable.SetDirectionX(_horizontal, _speed);
+            _horizontal = _attack.IsAttacking && _ground.OnGround? 0 : _horizontal;
+            _movable.SetDirection(new Vector2(_horizontal, 0), _speed);
             if (_leftClicked)
             {
-                _animation.SetAttackBool(1);
+                _attack.BeginAttack();
             } 
 
             _animation.SetInputX(_horizontal);

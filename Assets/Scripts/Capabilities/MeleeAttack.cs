@@ -12,6 +12,8 @@ namespace BHSCamp
 
         public override void BeginAttack()
         {
+            if (IsAttacking) return;
+
             IsAttacking = true;
             _animator.SetBool("IsAttacking", true);
             Invoke(nameof(EndAttack), GetAttackAnimationDuration());

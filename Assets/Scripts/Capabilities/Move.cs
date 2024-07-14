@@ -8,9 +8,9 @@ namespace BHSCamp
         [SerializeField, Range(0f, 5f)] private float _maxAcceleration = 0.3f;
         [SerializeField, Range(0f, 10f)] private float _maxAirAcceleration = 2f;
 
-        private Vector2 _direction, _desiredVelocity, _velocity;
         private Rigidbody2D _body;
         private Ground _ground;
+        private Vector2 _desiredVelocity, _velocity;
 
         private float _maxSpeed;
         private float _acceleration;
@@ -22,13 +22,6 @@ namespace BHSCamp
             _ground = GetComponent<Ground>();
         }
 
-        public void SetDirectionX(float directionX, float speed)
-        {
-            _direction.x = directionX;
-            _maxSpeed = speed;
-            _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
-        }
-
         private void FixedUpdate()
         {
             _onGround = _ground.OnGround;
@@ -38,6 +31,12 @@ namespace BHSCamp
             _velocity.x = Mathf.MoveTowards(_velocity.x, _desiredVelocity.x, _acceleration);
 
             _body.velocity = _velocity;
+        }
+
+        public void SetDirection(Vector2 direction, float speed)
+        {
+            _maxSpeed = speed;
+            _desiredVelocity = direction * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
         }
     }
 }

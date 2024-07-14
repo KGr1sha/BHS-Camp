@@ -7,7 +7,7 @@ namespace BHSCamp
         private Enemy _enemy;
         private AttackBase _attack;
 
-        private float timer;
+        private float _timer;
         private float _attackCD;
 
         public AttackState(
@@ -23,17 +23,17 @@ namespace BHSCamp
 
         public override void Enter()
         {
-            timer = 0;
+            _timer = 0;
             _attack.BeginAttack();
         }
 
         public override void Update(float deltaTime)
         {
-            timer += deltaTime;
-            if (timer >= _attackCD && IsPlayerInRange())
+            _timer += deltaTime;
+            if (_timer >= _attackCD && IsPlayerInRange())
             {
                 _attack.BeginAttack();
-                timer = 0;
+                _timer = 0;
             }
 
             if (IsPlayerInRange() == false && _attack.IsAttacking == false)
