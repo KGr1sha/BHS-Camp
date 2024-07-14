@@ -10,37 +10,35 @@ namespace BHSCamp
         [SerializeField] private Transform[] _waypoints;
 
         [Header("Attack")]
-        [SerializeField] private float _attackCD = 1f;
         [SerializeField] private LayerMask _playerLayerMask;
         [SerializeField] private Vector2 _attackRange;
-        [SerializeField] private AnimationClip _attackAnimationClip;
 
         private Animator _animator;
-        private IMove _move;
-        private IAttack _attack;
+        private AttackBase _attack;
+        private Rigidbody2D _body;
 
         private Fsm _fsm;
         private Vector2 _forwardVector;
 
         private void Awake()
         {
-            _move = GetComponent<IMove>();
             _animator = GetComponent<Animator>();
-            _attack = GetComponent<IAttack>();
+            _attack = GetComponent<AttackBase>();
+            _body = GetComponent<Rigidbody2D>();
         }
 
         private void Start()
         {
-            float attackAnimationTime = _attackAnimationClip.averageDuration;
             _fsm = new Fsm();
-            _fsm.AddState(new PatrolState(_fsm, this, _patrolSpeed, _waypoints, _move, transform));
-            _fsm.AddState(new AttackState(_fsm, this, _attackCD, attackAnimationTime, _animator));
+            _fsm.AddState(new PatrolState(_fsm, this, _patrolSpeed, _waypoints));
+            _fsm.AddState(new AttackState(_fsm, this, _attack));
             _fsm.SetState<PatrolState>();
             SetForwardVector(new Vector2(transform.localScale.x, 0));
         }
 
         private void Update()
         {
+            _animator.SetFloat("VelocityX", Mathf.Abs(_body.velocity.x));
             _fsm.Update(Time.deltaTime);
         }
 
@@ -54,7 +52,7 @@ namespace BHSCamp
             );
         }
 
-        public RaycastHit2D CheckForPlayer()
+        public bool CheckForPlayer()
         {
             Vector2 origin = new(
                 transform.position.x + (_forwardVector.x * _attackRange.x / 2),
@@ -68,7 +66,7 @@ namespace BHSCamp
                 0,
                 _playerLayerMask
             );
-            return hit;
+            return hit.collider?.GetComponent<IDamageable>() != null;
         }
 
         public void OnDrawGizmos()

@@ -1,30 +1,30 @@
 using BHSCamp.FSM;
-using UnityEngine;
 
 namespace BHSCamp
 {
     public class AttackState : FsmState
     {
-        private float _attackCD;
         private Enemy _enemy;
-        private Animator _animator;
+        private AttackBase _attack;
 
         private float timer;
-        private bool _canExit;
-        private float _attackTime;
+        private float _attackCD;
 
-        public AttackState(Fsm fsm, Enemy enemy, float attackCD, float attackAnimationTime, Animator animator) : base(fsm)
+        public AttackState(
+            Fsm fsm,
+            Enemy enemy,
+            AttackBase attack
+        ) : base(fsm)
         {
-            _attackCD = attackCD;
+            _attackCD = attack.GetAttackCD();
             _enemy = enemy;
-            _animator = animator;
-            _attackTime = attackAnimationTime;
+            _attack = attack;
         }
 
         public override void Enter()
         {
             timer = 0;
-            Attack();
+            _attack.BeginAttack();
         }
 
         public override void Update(float deltaTime)
@@ -32,33 +32,19 @@ namespace BHSCamp
             timer += deltaTime;
             if (timer >= _attackCD && IsPlayerInRange())
             {
-                Attack();
+                _attack.BeginAttack();
                 timer = 0;
             }
 
-            if (_canExit == false && _attackTime != 0 && timer >= _attackTime)
-            {
-                _animator.SetBool("IsAttacking", false);
-                _canExit = true;
-            }
-
-            if (IsPlayerInRange() == false && _canExit)
+            if (IsPlayerInRange() == false && _attack.IsAttacking == false)
             {
                 Fsm.SetState<PatrolState>();
             }
         }
 
-        private void Attack()
-        {
-            _animator.SetBool("IsAttacking", true);
-            _attackTime = _animator.GetCurrentAnimatorClipInfo(0).Length;
-            _canExit = false;
-        }
-
         private bool IsPlayerInRange()
         {
-            RaycastHit2D hit = _enemy.CheckForPlayer();
-            return hit;
+            return _enemy.CheckForPlayer();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace BHSCamp
         private bool _leftClicked;
         private IMove _movable;
         private Jump _jump;
-        private IAttack _attack;
         private PlayerAnimation _animation;
 
         private void Awake()
@@ -18,7 +17,6 @@ namespace BHSCamp
             _movable = GetComponent<IMove>();
             _jump = GetComponent<Jump>();
             _animation = GetComponent<PlayerAnimation>();
-            _attack = GetComponent<IAttack>();
         }
 
         private void Update()
@@ -29,8 +27,7 @@ namespace BHSCamp
             _movable.SetDirectionX(_horizontal, _speed);
             if (_leftClicked)
             {
-                //_attack.Action();
-                _animation.Attack();
+                _animation.SetAttackBool(1);
             } 
 
             _animation.SetInputX(_horizontal);

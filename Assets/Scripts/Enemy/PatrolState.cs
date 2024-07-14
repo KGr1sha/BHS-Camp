@@ -13,13 +13,13 @@ namespace BHSCamp
         private Enemy _enemy;
         private Vector3 _currentPosition => _transform.position;
 
-        public PatrolState(Fsm fsm, Enemy enemy, float speed, Transform[] waypoints, IMove move, Transform transform) : base(fsm)
+        public PatrolState(Fsm fsm, Enemy enemy, float speed, Transform[] waypoints) : base(fsm)
         {
             _speed = speed;
             _waypoints = waypoints;
-            _move = move;
-            _transform = transform;
             _enemy = enemy;
+            _move = enemy.GetComponent<IMove>();
+            _transform = enemy.transform;
         }
 
         public override void Update(float deltaTime)
@@ -49,12 +49,9 @@ namespace BHSCamp
 
         private void CheckForPlayer()
         {
-            RaycastHit2D hit = _enemy.CheckForPlayer();
-
+            bool hit = _enemy.CheckForPlayer();
             if (hit)
-            {
                 Fsm.SetState<AttackState>();
-            }
         }
     }
 }

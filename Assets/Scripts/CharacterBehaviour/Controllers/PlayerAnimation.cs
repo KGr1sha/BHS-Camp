@@ -5,7 +5,6 @@ namespace BHSCamp
     [RequireComponent(typeof(Animator))]
     public class PlayerAnimation : MonoBehaviour
     {
-        [SerializeField] private AnimationClip _attackAnimation;
         private const string HurtTrigger = "Hurt";
         private const string IsDeadAnimatorParameter = "IsDead";
 
@@ -16,7 +15,7 @@ namespace BHSCamp
         private HealthComponent _healthComponent;
         private bool isDead = false;
 
-        private float _inputX;
+        private float _directionX;
 
         private void OnEnable()
         {
@@ -46,9 +45,9 @@ namespace BHSCamp
 
         private void Update()
         {
-            if (_inputX != 0)
+            if (_directionX != 0)
                 transform.localScale = new Vector2(
-                    Mathf.Sign(_inputX) * Mathf.Abs(transform.localScale.x),
+                    Mathf.Sign(_directionX) * Mathf.Abs(transform.localScale.x),
                     transform.localScale.y
                 );
 
@@ -58,21 +57,14 @@ namespace BHSCamp
             _animator.SetBool(IsDeadAnimatorParameter, isDead);
         }
 
-        public void Attack()
+        public void SetAttackBool(int value)
         {
-            _animator.SetBool("IsAttacking", true);
-            float attackAnimationTime = _attackAnimation.averageDuration;
-            Invoke(nameof(ResetAttack), attackAnimationTime);
-        }
-
-        private void ResetAttack()
-        {
-            _animator.SetBool("IsAttacking", false);
+            _animator.SetBool("IsAttacking", value != 0);
         }
 
         public void SetInputX(float inputX)
         {
-            _inputX = inputX;
+            _directionX = inputX;
         }
 
         public void EnableIsDeadParameter()

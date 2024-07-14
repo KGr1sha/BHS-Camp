@@ -2,29 +2,25 @@ using UnityEngine;
 
 namespace BHSCamp
 {
-    public class MeleeAttack : MonoBehaviour, IAttack
+    [RequireComponent(typeof(Animator))]
+    public class MeleeAttack : AttackBase
     {
-        [SerializeField] private int _damage;
-        [SerializeField] private BoxCollider2D _hitCollider;
-        [SerializeField] private LayerMask _layerToHit;
-        [SerializeField] private int _maxTargets;
-
-        public void Action()
+        private void Awake()
         {
-            if (_maxTargets == 0)
-                Debug.LogError($"Max targets is set to 0: {gameObject.name}");
+            _animator = GetComponent<Animator>();
+        }
 
-            ContactFilter2D filter = new();
-            filter.useTriggers = true; 
-            filter.layerMask = _layerToHit;
-            Collider2D[] colliders = new Collider2D[_maxTargets];
+        public override void BeginAttack()
+        {
+            IsAttacking = true;
+            _animator.SetBool("IsAttacking", true);
+            Invoke(nameof(EndAttack), GetAttackAnimationDuration());
+        }
 
-            int collidersCount = Physics2D.OverlapCollider(_hitCollider, filter, colliders);
-            for(int i = 0; i < collidersCount; i++)
-            {
-                IDamageable damageable = colliders[i].GetComponent<IDamageable>();
-                damageable.TakeDamage(_damage);
-            }
+        public override void EndAttack()
+        {
+            IsAttacking = false;
+            _animator.SetBool("IsAttacking", false);
         }
     }
 }
