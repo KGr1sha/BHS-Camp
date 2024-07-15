@@ -32,14 +32,25 @@ namespace BHSCamp
             if (_ground.OnGround)
             {
                 _animator.SetBool("IsOnGround", true);
+                ResetRigidBody();
             }
         }
 
         private void Fall()
         {
+            //включаем симуляцию физики для RigidBody2D
             _body.bodyType = RigidbodyType2D.Dynamic;
+            //включаем непрерывную проверку коллизий чтобы объект никуда не проваливался
             _body.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            //включаем интерполяцию чтобы объект падал максимально плавно
             _body.interpolation = RigidbodyInterpolation2D.Interpolate;
+        }
+
+        private void ResetRigidBody()
+        {
+            _body.bodyType = RigidbodyType2D.Kinematic;
+            _body.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+            _body.interpolation = RigidbodyInterpolation2D.None;
         }
     }
 }

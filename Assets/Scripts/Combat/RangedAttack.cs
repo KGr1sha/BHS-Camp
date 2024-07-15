@@ -4,8 +4,8 @@ namespace BHSCamp
 {
     public class RangedAttack : AttackBase
     {
-        [SerializeField] private Projectile _projectilePrefab;
-        [SerializeField] private float _projectileSpawnOffset;
+        [SerializeField] private Projectile _projectilePrefab; // префаб проджектайла
+        [SerializeField] private float _projectileSpawnOffset; // отступ, на котором будет спавниться проджектайл
         [SerializeField] private Transform _projectileParent;
 
         private void Awake()

@@ -3,6 +3,7 @@ using BHSCamp.FSM;
 
 namespace BHSCamp
 {
+    // враг, который умеет только патрулировать
     public class PatrolEnemy : MonoBehaviour
     {
         [Header("Patroling")]

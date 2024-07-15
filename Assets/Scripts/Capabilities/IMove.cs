@@ -2,8 +2,9 @@ using UnityEngine;
 
 namespace BHSCamp
 {
+    //интерфейс для взаимодействиями с компонентами, отвечающими за передвижение
     public interface IMove
     {
-        public void SetVelocity(Vector2 direction, float speed);
+        void SetVelocity(Vector2 direction, float speed);
     }
 }

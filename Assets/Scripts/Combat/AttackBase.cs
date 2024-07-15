@@ -2,11 +2,12 @@ using UnityEngine;
 
 namespace BHSCamp
 {
+    //базовый класс для компонента атаки
     public abstract class AttackBase : MonoBehaviour
     {
         public bool IsAttacking { get; protected set; }
-        [SerializeField] protected AnimationClip _attackAnimationClip;
-        [SerializeField] protected float _attackCD;
+        [SerializeField] protected AnimationClip _attackAnimationClip; //анимация атаки
+        [SerializeField] protected float _attackCD; //кулдаун атаки
         protected Animator _animator;
         protected Vector3 _target;
 

@@ -13,8 +13,6 @@ public class ParallaxBehaviour : MonoBehaviour
     private void Start()
     {
         _lastTargetPosition = _targetPosition;
-        //Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-        //_textureWidth = sprite.texture.width / sprite.pixelsPerUnit;
     }
 
     private void Update()
@@ -23,11 +21,5 @@ public class ParallaxBehaviour : MonoBehaviour
         delta *= new Vector2(_horizontalMovementMultiplier, _verticalMovementMultiplier);
         transform.position += delta;
         _lastTargetPosition = _targetPosition;
-
-        //if (Mathf.Abs(_cameraPosition.x - transform.position.x) >= _textureWidth)
-        //{
-        //    float offsetX = (_cameraPosition.x - transform.position.x) % _textureWidth;
-        //    transform.position = new Vector3(_cameraPosition.x + offsetX, transform.position.y);
-        //}
     }
 }

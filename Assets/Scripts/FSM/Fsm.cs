@@ -33,9 +33,9 @@ namespace BHSCamp.FSM
             CurrentState?.Update(deltaTime);
         }
 
-        public void FixedUpdate()
+        public void FixedUpdate(float fixedDeltaTime)
         {
-            CurrentState?.FixedUpdate();
+            CurrentState?.FixedUpdate(fixedDeltaTime);
         }
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace BHSCamp
 {
+    // компонент, который наносит урон при касании и откидывает
     [RequireComponent(typeof(Collision2D))]
     public class InstantDamageDealer : MonoBehaviour
     {
@@ -21,7 +22,10 @@ namespace BHSCamp
 
         private void DealInstantDamage(IDamageable damageable)
         {
-            if (damageable == null) return;
+            // если объект, с которым произошла коллизия, не имеет компонент IDamageable,
+            //ничего не делаем
+            if (damageable == null) return; 
+
             MonoBehaviour mb = (MonoBehaviour)damageable;
             if (_knockbackApplied)
             {
@@ -36,6 +40,7 @@ namespace BHSCamp
 
         private void ApplyKnockback(Rigidbody2D rb, Vector2 direction, float knockForce)
         {
+            //ForceMode2D.Impulse - мгновенное применение силы
             rb.AddForce(direction * knockForce, ForceMode2D.Impulse);
         }
     }

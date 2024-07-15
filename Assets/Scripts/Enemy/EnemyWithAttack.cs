@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace BHSCamp
 {
+    // враг, который патрулирует и атакует игрока, если тот в зоне видимости
     public class EnemyWithAttack : PatrolEnemy
     {
         [Header("Attack")]
@@ -28,6 +29,7 @@ namespace BHSCamp
 
         protected override void InitializeStates()
         {
+            // кроме состояний родительского класса(PatrolEnemy) добавляем состояние атаки
             base.InitializeStates();
             _fsm.AddState(new AttackState(_fsm, this, _attack));
         }
