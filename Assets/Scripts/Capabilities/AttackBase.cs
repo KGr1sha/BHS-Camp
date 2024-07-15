@@ -10,8 +10,16 @@ namespace BHSCamp
         protected Animator _animator;
         protected Vector3 _target;
 
-        public abstract void BeginAttack();
-        public abstract void EndAttack();
+        public virtual void BeginAttack()
+        {
+            IsAttacking = true;
+            Invoke(nameof(EndAttack), GetAttackAnimationDuration());
+        }
+
+        public virtual void EndAttack()
+        {
+            IsAttacking = false;
+        }
 
         public float GetAttackAnimationDuration()
         {

@@ -33,7 +33,7 @@ namespace BHSCamp
             _body.velocity = _velocity;
         }
 
-        public void SetDirection(Vector2 direction, float speed)
+        public void SetVelocity(Vector2 direction, float speed)
         {
             _maxSpeed = speed;
             _desiredVelocity = direction * Mathf.Max(_maxSpeed - _ground.Friction, 0f);

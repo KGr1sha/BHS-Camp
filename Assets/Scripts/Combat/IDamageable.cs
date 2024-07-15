@@ -1,6 +1,6 @@
 ﻿namespace BHSCamp
 {
-    internal interface IDamageable
+    public interface IDamageable
     {
         void TakeDamage(int amount);
     }

@@ -53,9 +53,5 @@ namespace BHSCamp
         //public void SetMaxHealth(float newMaxHealth)
         //{
         //}
-
-        //public void RestoreHealth(float amount)
-        //{
-        //}
     }
 }

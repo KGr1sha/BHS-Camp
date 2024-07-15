@@ -16,15 +16,13 @@ namespace BHSCamp
         public override void BeginAttack()
         {
             if (IsAttacking) return;
-
-            IsAttacking = true;
+            base.BeginAttack();
             _animator.SetBool("IsAttacking", true);
-            Invoke(nameof(EndAttack), GetAttackAnimationDuration());
         }
 
         public override void EndAttack()
         {
-            IsAttacking = false;
+            base.EndAttack();
             _animator.SetBool("IsAttacking", false);
 
             Vector3 toTarget = (_target - transform.position).normalized;

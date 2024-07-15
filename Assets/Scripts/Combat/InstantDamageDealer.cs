@@ -14,9 +14,9 @@ namespace BHSCamp
             DealInstantDamage(collision.gameObject.GetComponent<IDamageable>());
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            DealInstantDamage(collision.GetComponent<IDamageable>());
+            DealInstantDamage(collider.GetComponent<IDamageable>());
         }
 
         private void DealInstantDamage(IDamageable damageable)

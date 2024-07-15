@@ -32,7 +32,8 @@ namespace BHSCamp
 
         public override void Exit()
         {
-            _move.SetDirection(Vector2.zero, 0);
+            _move.SetVelocity(Vector2.zero, 0);
+            _animator.SetFloat("VelocityX", 0);
         }
 
         private void Patrol()
@@ -41,7 +42,7 @@ namespace BHSCamp
             toNext = new Vector2(toNext.x, 0).normalized;
 
             _enemy.SetForwardVector(toNext);
-            _move.SetDirection(toNext, _speed);
+            _move.SetVelocity(toNext, _speed);
             _animator.SetFloat("VelocityX", Mathf.Abs(_body.velocity.x));
 
             if (Mathf.Abs(_currentPosition.x - _waypoints[_currentIndex].position.x) < 0.1f)

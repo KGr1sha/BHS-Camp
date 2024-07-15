@@ -10,11 +10,6 @@ namespace BHSCamp
         [SerializeField] private float _periodicDamageCooldown;
         private float _periodicDamageTimer;
 
-        private void Start()
-        {
-            _periodicDamageTimer = 0;
-        }
-
         private void OnTriggerStay2D(Collider2D collision)
         {
             DealPeriodicDamage(collision.gameObject.GetComponent<IDamageable>());
@@ -23,8 +18,7 @@ namespace BHSCamp
 
         private void DealPeriodicDamage(IDamageable damageable)
         {
-            if (damageable == null)
-                return;
+            if (damageable == null) return;
 
             if (_periodicDamageTimer >= _periodicDamageCooldown)
             {

@@ -32,6 +32,19 @@ namespace BHSCamp
             _health.OnDeath -= HandleDeath;
         }
 
+        private void Awake()
+        {
+            _body = GetComponent<Rigidbody2D>();
+            _health = GetComponent<Health>();
+        }
+
+        private void Start()
+        {
+            InitializeStates();
+            _fsm.SetState<PatrolState>();
+            SetForwardVector(new Vector2(transform.localScale.x, 0));
+        }
+
         protected virtual void InitializeStates()
         {
             _fsm = new Fsm();
@@ -39,6 +52,11 @@ namespace BHSCamp
             _fsm.AddState(new HurtState(_fsm, this, _staggerTime));
             _fsm.AddState(new IdleState(_fsm, this, _idleTime));
             _fsm.AddState(new DeadState(_fsm, this, _respawn, _respawnTime));
+        }
+
+        private void Update()
+        {
+            _fsm.Update(Time.deltaTime);
         }
 
         public virtual void SetForwardVector(Vector2 forward)
