@@ -48,12 +48,5 @@ namespace BHSCamp
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
             OnHealed?.Invoke(amount);
         }
-
-        // HOMEWORK:--> declare SetMaxHealth() && RestoreHealth() in IHealable interface
-        // and implement here
-
-        //public void SetMaxHealth(float newMaxHealth)
-        //{
-        //}
     }
 }
