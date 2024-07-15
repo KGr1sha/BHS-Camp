@@ -15,10 +15,10 @@ namespace BHSCamp
             DealInstantDamage(collision.gameObject.GetComponent<IDamageable>());
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
-        {
-            DealInstantDamage(collider.GetComponent<IDamageable>());
-        }
+        // STEP 5: Сейчас урон наносится только при взаимодействии
+        // коллайдера на данном объекте с другим коллайдером,
+        // Сделайте так, чтобы урон наносился также при взаимодействии триггера
+        // HINT: Используйте OnTriggerEnter2D
 
         private void DealInstantDamage(IDamageable damageable)
         {

@@ -9,7 +9,6 @@ namespace BHSCamp
         private Animator _animator;
         private bool _respawn;
         private float _respawnTime;
-        private float _timer;
 
         public DeadState(Fsm fsm, PatrolEnemy enemy, bool respawn, float respawnTime) : base(fsm)
         {
@@ -22,22 +21,10 @@ namespace BHSCamp
         public override void Enter()
         {
             _animator.SetBool("IsDead", true);
-            _timer = 0;
         }
 
-        public override void Update(float deltaTime)
-        {
-            if (!_respawn) return;
-            _timer += deltaTime;
-            if (_timer > _respawnTime)
-                Fsm.SetState<PatrolState>();
-        }
-
-        public override void Exit()
-        {
-            _animator.SetBool("IsDead", false);
-            Health health = _enemy.GetComponent<Health>();
-            health.Heal(health.MaxHealth);
-        }
+        // STEP 11: Если _respawn == true,
+        // через _respawnTime секунд мы должны выйти из состояния Dead
+        // и восстановить здоровье
     }
 }

@@ -32,7 +32,7 @@ namespace BHSCamp
                 Quaternion.identity,
                 _projectileParent
             );
-            projectile.SetDirection(toTarget);
+            // STEP 7: задайте направление движения снаряду
         }
     }
 }

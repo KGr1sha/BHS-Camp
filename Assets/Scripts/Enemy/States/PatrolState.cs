@@ -50,14 +50,19 @@ namespace BHSCamp
             if (Mathf.Abs(_currentPosition.x - _waypoints[_currentIndex].position.x) < 0.1f)
             {
                 _currentIndex = (_currentIndex + 1) % _waypoints.Length;
-                Fsm.SetState<IdleState>();
+                // STEP 2: Добавьте переход в состояние IdleState
             }
         }
 
         private void CheckForPlayer()
         {
-            if (_enemy is EnemyWithAttack e && e.PlayerInSight())
-                Fsm.SetState<AttackState>();
+            // STEP 3: Реализуйте логику:
+            // Если противник является атакующим И игрок в его зоне видимости:
+            //     Переходим в состояние атаки
+            //
+            // HINT: Используйте if (_enemy is EnemyWithAttack ...)
+            // 
+            // STEP 4: Реализуйте такую же логику в состоянии IdleState
         }
     }
 }

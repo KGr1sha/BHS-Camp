@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BHSCamp
 {
     //компонент, отвечающий за здоровье сущности
-    public class Health : MonoBehaviour, IDamageable, IHealable
+    public class Health : MonoBehaviour, IDamageable
     {
         public event Action OnDeath; //событие, вызываемое при смерти
         public event Action<int> OnDamageTaken; //событие, вызываемое при получении урона
@@ -39,14 +39,7 @@ namespace BHSCamp
                 OnDamageTaken?.Invoke(amount);
             }
         }
-
-        public void Heal(int amount)
-        {
-            if (amount < 0) // нельзя захилить отрицательное кол-во хп
-                throw new ArgumentOutOfRangeException($"amount should be positive: {gameObject.name}");
-            _currentHealth += amount;
-            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
-            OnHealed?.Invoke(amount);
-        }
+        // STEP 10: declare Heal() in IHealable interface
+        // and implement here
     }
 }
