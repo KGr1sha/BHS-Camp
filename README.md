@@ -4,7 +4,7 @@
 ### Задания рекомендуется выполнять по порядку
 ### Должен получится функционал, представленный в ветке lecture-4
 ## Скрипты с заданиями:
-1. Enemy/EnemyWithAttack.cs
+1. [Enemy/EnemyWithAttack.cs](https://github.com/KGr1sha/BHS-Camp/blob/homework-4/Assets/Scripts/Enemy/EnemyWithAttack.cs#L33)
 2. Enemy/States/PatrolState.cs
 3. Enemy/States/PatrolState.cs
 4. Enemy/States/IdleState.cs
