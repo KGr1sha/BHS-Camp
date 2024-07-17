@@ -23,6 +23,7 @@ namespace BHSCamp
             if (amount < 0)
                 throw new ArgumentOutOfRangeException($"Amount should be positive!: {gameObject.name}");
             _score += amount;
+            Debug.Log("Score: " + _score.ToString());
         }
     }
 }

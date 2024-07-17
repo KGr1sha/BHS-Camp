@@ -11,8 +11,12 @@ namespace BHSCamp
         {
             _move = target.GetComponent<IMove>();
             _move.SetVelocityMultiplier(_speedMultiplier);
-            _onExpire = () => {_move.SetVelocityMultiplier(1f);};
             base.Apply(target);
+        }
+
+        protected override void OnExpire()
+        {
+            _move.SetVelocityMultiplier(1f);
         }
     }
 }
