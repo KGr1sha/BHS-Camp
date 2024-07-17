@@ -3,7 +3,7 @@ using UnityEngine;
 namespace BHSCamp
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Jump : MonoBehaviour
+    public class Jump : MonoBehaviour, IJump 
     {
         [SerializeField, Range(0f, 10f)] private float _jumpHeight = 3f;
         [SerializeField, Range(0, 5)] private int _maxAirJumps = 0;
@@ -17,15 +17,21 @@ namespace BHSCamp
 
         private int _jumpPhase;
         private float _defaultGravityScale, _jumpSpeed;
+        private float _jumpHeightMultiplier;
 
         private bool _desiredJump, _onGround;
 
-        void Awake()
+        private void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
 
             _defaultGravityScale = 1f;
+        }
+
+        private void Start()
+        {
+            _jumpHeightMultiplier = 1f;
         }
 
         public void Action()
@@ -77,7 +83,7 @@ namespace BHSCamp
 
                 _jumpPhase += 1;
                 
-                _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
+                _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight * _jumpHeightMultiplier);
                 
                 if (_velocity.y > 0f)
                 {
@@ -89,6 +95,16 @@ namespace BHSCamp
                 }
                 _velocity.y += _jumpSpeed;
             }
+        }
+
+        public void IncreaseMaxAirJumps(int amount)
+        {
+            _maxAirJumps += amount;
+        }
+
+        public void SetJumpHeightMultiplier(float multiplier)
+        {
+            _jumpHeightMultiplier = multiplier;
         }
     }
 }

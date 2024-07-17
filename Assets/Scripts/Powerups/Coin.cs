@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace BHSCamp
 {
-    public class Coin : MonoBehaviour, IPowerup
+    public class Coin : PowerupBase 
     {
         [SerializeField] private int _scoreToAdd;
 
-        public void Apply(GameObject target)
+        public override void Apply(GameObject target)
         {
             GameManager.Instance.AddScore(_scoreToAdd);
         }

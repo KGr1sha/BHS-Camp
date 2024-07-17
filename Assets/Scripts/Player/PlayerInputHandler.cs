@@ -7,7 +7,7 @@ namespace BHSCamp
         [SerializeField] private float _speed;
         private float _horizontal;
         private IMove _movable;
-        private Jump _jump;
+        private IJump _jump;
         private AttackBase _attack;
         private Health _health;
         private PlayerAnimation _animation;
@@ -27,7 +27,7 @@ namespace BHSCamp
         private void Awake()
         {
             _movable = GetComponent<IMove>();
-            _jump = GetComponent<Jump>();
+            _jump = GetComponent<IJump>();
             _animation = GetComponent<PlayerAnimation>();
             _attack = GetComponent<AttackBase>();
             _ground = GetComponent<Ground>();
