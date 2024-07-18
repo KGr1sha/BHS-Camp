@@ -6,11 +6,11 @@ namespace BHSCamp
     public class PowerupApplier : MonoBehaviour
     {
         public static event Action OnPowerupCollected;
-        private PowerupBase[] _powerups;
+        private IPowerup[] _powerups;
 
         private void Awake()
         {
-            _powerups = GetComponents<PowerupBase>();
+            _powerups = GetComponents<IPowerup>();
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
@@ -22,7 +22,7 @@ namespace BHSCamp
 
         private void ApplyPowerups(GameObject target)
         {
-            foreach(PowerupBase powerup in _powerups)
+            foreach(IPowerup powerup in _powerups)
                 powerup.Apply(target);
         }
     }

@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace BHSCamp
 {
-    public abstract class PowerupBase : MonoBehaviour
+    public interface IPowerup
     {
-        public abstract void Apply(GameObject target);
+        void Apply(GameObject target);
     } 
 }

@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace BHSCamp
 {
-    public class HealthPowerup : PowerupBase 
+    public class HealthPowerup : MonoBehaviour, IPowerup
     {
         [SerializeField] private int _healAmount;
 
-        public override void Apply(GameObject target)
+        public void Apply(GameObject target)
         {
             target.GetComponent<IHealable>()?.Heal(_healAmount);
         }

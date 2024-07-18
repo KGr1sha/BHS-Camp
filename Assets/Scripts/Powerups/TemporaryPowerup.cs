@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace BHSCamp
 {
-    public abstract class TemporaryPowerup : PowerupBase
+    public abstract class TemporaryPowerup : MonoBehaviour, IPowerup
     {
         [SerializeField] protected float _duration;
 
-        public override void Apply(GameObject target)
+        public virtual void Apply(GameObject target)
         {
             ActionOnTimer executer = target.GetComponent<ActionOnTimer>();
             if (executer != null)
