@@ -2,14 +2,8 @@ using UnityEngine;
 
 namespace BHSCamp
 {
-    [RequireComponent(typeof(Animator))]
     public class MeleeAttack : AttackBase
     {
-        private void Awake()
-        {
-            _animator = GetComponent<Animator>();
-        }
-
         public override void BeginAttack()
         {
             if (IsAttacking) return;

@@ -8,7 +8,7 @@ namespace BHSCamp
         public bool IsAttacking { get; protected set; }
         [SerializeField] protected AnimationClip _attackAnimationClip; //анимация атаки
         [SerializeField] protected float _attackCD; //кулдаун атаки
-        protected Animator _animator;
+        [SerializeField] protected Animator _animator;
         protected Vector3 _target;
 
         public virtual void BeginAttack()

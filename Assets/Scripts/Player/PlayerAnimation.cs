@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 
 namespace BHSCamp
@@ -5,10 +7,11 @@ namespace BHSCamp
     [RequireComponent(typeof(Animator))]
     public class PlayerAnimation : MonoBehaviour
     {
-        private Health _healthComponent;
-        private Animator _animator;
+        [SerializeField] private GameObject _playerObject;
         private Rigidbody2D _body;
         private Ground _ground;
+        private Animator _animator;
+        private Health _healthComponent;
 
         private void OnEnable()
         {
@@ -24,10 +27,10 @@ namespace BHSCamp
 
         private void Awake()
         {
+            _healthComponent = _playerObject.GetComponent<Health>();
+            _ground = _playerObject.GetComponent<Ground>();
+            _body = _playerObject.GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
-            _body = GetComponent<Rigidbody2D>();
-            _ground = GetComponent<Ground>();
-            _healthComponent = GetComponent<Health>();
         }
 
         private void Update()

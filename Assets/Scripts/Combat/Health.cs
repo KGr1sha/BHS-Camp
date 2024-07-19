@@ -30,14 +30,9 @@ namespace BHSCamp
             _currentHealth -= amount;
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth); //здоровье не может быть < 0
 
+            OnDamageTaken?.Invoke(amount);
             if (_currentHealth == 0) 
-            {
                 OnDeath?.Invoke();
-            }
-            else
-            {
-                OnDamageTaken?.Invoke(amount);
-            }
         }
 
         public void Heal(int amount)
