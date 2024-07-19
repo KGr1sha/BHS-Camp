@@ -32,5 +32,14 @@ namespace BHSCamp.UI
         {
             _fillImage.fillAmount = Mathf.Clamp01(value);
         }
+
+        private void Update()
+        {
+            transform.localScale = new Vector3(
+                transform.parent.localScale.x,
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        }
     }
 }

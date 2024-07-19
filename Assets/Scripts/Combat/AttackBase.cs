@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace BHSCamp
@@ -8,8 +9,13 @@ namespace BHSCamp
         public bool IsAttacking { get; protected set; }
         [SerializeField] protected AnimationClip _attackAnimationClip; //анимация атаки
         [SerializeField] protected float _attackCD; //кулдаун атаки
-        [SerializeField] protected Animator _animator;
+        protected Animator _animator;
         protected Vector3 _target;
+
+        protected void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
 
         public virtual void BeginAttack()
         {

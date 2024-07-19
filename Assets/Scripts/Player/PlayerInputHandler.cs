@@ -5,7 +5,7 @@ namespace BHSCamp
     public class PlayerInputHandler : MonoBehaviour
     {
         [SerializeField] private float _speed;
-        [SerializeField] private PlayerAnimation _animation;
+        private PlayerAnimation _animation;
         private float _horizontal;
         private IMove _movable;
         private IJump _jump;
@@ -31,6 +31,7 @@ namespace BHSCamp
             _attack = GetComponent<AttackBase>();
             _ground = GetComponent<Ground>();
             _health = GetComponent<Health>();
+            _animation = GetComponent<PlayerAnimation>();
         }
 
         private void Update()

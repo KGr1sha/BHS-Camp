@@ -8,11 +8,6 @@ namespace BHSCamp
         [SerializeField] private float _projectileSpawnOffset; // отступ, на котором будет спавниться проджектайл
         [SerializeField] private Transform _projectileParent;
 
-        private void Awake()
-        {
-            _animator = GetComponent<Animator>();
-        }
-
         public override void BeginAttack()
         {
             if (IsAttacking) return;

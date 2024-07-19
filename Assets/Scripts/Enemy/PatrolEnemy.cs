@@ -72,7 +72,8 @@ namespace BHSCamp
 
         protected virtual void HandleHit(int damage)
         {
-            _fsm.SetState<HurtState>();
+            if (0 != _health.CurrentHealth)
+                _fsm.SetState<HurtState>();
         }
 
         protected virtual void HandleDeath()
