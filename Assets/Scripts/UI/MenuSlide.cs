@@ -38,7 +38,7 @@ namespace BHSCamp.UI
                 _slideEnd.position,
                _curve.Evaluate((t))
             );
-            if (Vector3.Distance(_rectTransform.position, _slideEnd.position) <= 0.1f)
+            if (1 <= t)
                 _move = false;
         }
     }
