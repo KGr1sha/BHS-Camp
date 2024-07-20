@@ -8,7 +8,7 @@ namespace BHSCamp
 
         public virtual void Apply(GameObject target)
         {
-            ActionOnTimer executer = target.GetComponent<ActionOnTimer>();
+            var executer = target.GetComponent<ActionOnTimer>();
             if (executer != null)
                 executer.ActionAfterTime(OnExpire, _duration);
         }
