@@ -6,7 +6,11 @@ namespace BHSCamp
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
-        public int Score { get; private set; }
+        public static event Action OnScoreChanged;
+        public int Score
+        {
+            get { return _score; }
+        }
         private int _score;
 
         private void Awake()
@@ -25,7 +29,7 @@ namespace BHSCamp
                     $"Amount should be positive!: {gameObject.name}"
                 );
             _score += amount;
-            Debug.Log("Score: " + _score.ToString());
+            OnScoreChanged?.Invoke();
         }
     }
 }

@@ -35,7 +35,6 @@ namespace BHSCamp
                 ApplyKnockback(rb, knockbackDirection, _knockbackForce);
             }
             damageable.TakeDamage(_instantDamage);
-            print($"Dealt {_instantDamage} damage to {mb.name}");
         }
 
         private void ApplyKnockback(Rigidbody2D rb, Vector2 direction, float knockForce)
