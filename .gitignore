@@ -26,6 +26,7 @@
 # Visual Studio cache directory
 .vs/
 .vscode/
+.vsconfig/
 
 # Gradle cache directory
 .gradle/
@@ -86,5 +87,5 @@ crashlytics-build.properties
 /dataSources/
 /dataSources.local.xml
 
-
+.idea/
 
