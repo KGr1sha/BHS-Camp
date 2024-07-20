@@ -39,7 +39,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1564456796868109863}
-  - {fileID: 9188314360359746562}
+  - {fileID: 3571323650239323165}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1623052476410533647
@@ -186,6 +186,7 @@ MonoBehaviour:
   _staggerTime: 0.5
   _respawn: 1
   _respawnTime: 3
+  _visual: {fileID: 0}
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -217,7 +218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackAnimationClip: {fileID: 7400000, guid: 866714ad6e7abee4d9b1073eb8514db2, type: 2}
   _attackCD: 2
-  _animator: {fileID: 0}
 --- !u!114 &641261479352244112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3874809067682430494, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+      propertyPath: _healthComponent
+      value: 
+      objectReference: {fileID: 7659012797998805184}
     - target: {fileID: 8197633276276894218, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -459,8 +463,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
---- !u!224 &9188314360359746562 stripped
+--- !u!224 &3571323650239323165 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8197633276276894218, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4597973745125837333, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
   m_PrefabInstance: {fileID: 1027008949410010632}
   m_PrefabAsset: {fileID: 0}

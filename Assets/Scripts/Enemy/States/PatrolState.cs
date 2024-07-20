@@ -20,7 +20,7 @@ namespace BHSCamp
             _speed = speed;
             _waypoints = waypoints;
             _move = enemy.GetComponent<IMove>();
-            _animator = enemy.Visual.GetComponent<Animator>();
+            _animator = enemy.GetComponent<Animator>();
             _body = enemy.GetComponent<Rigidbody2D>();
         }
 

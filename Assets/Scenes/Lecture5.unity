@@ -459,8 +459,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 555328626}
   - {fileID: 2054299671}
+  - {fileID: 2130165806}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &420877387
@@ -989,11 +989,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 10
   _jumpHeightMultiplier: 1.5
---- !u!224 &555328626 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8197633276276894218, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
-  m_PrefabInstance: {fileID: 8846548680904634100}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &567729879
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,6 +5933,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2040fd694d1c2394984032e906b8ebea, type: 3}
+--- !u!224 &2130165806 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4597973745125837333, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+  m_PrefabInstance: {fileID: 8846548680904634100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2139958835
 GameObject:
   m_ObjectHideFlags: 0
@@ -6554,6 +6554,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3874809067682430494, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+      propertyPath: _healthComponent
+      value: 
+      objectReference: {fileID: 420877398}
     - target: {fileID: 8197633276276894218, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

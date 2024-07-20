@@ -40,7 +40,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1554025756599514068}
-  - {fileID: 7568643597386667269}
+  - {fileID: 2811839956533638426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &438566528438159863
@@ -247,6 +247,7 @@ MonoBehaviour:
   _staggerTime: 0.5
   _respawn: 0
   _respawnTime: 3
+  _visual: {fileID: 0}
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -265,7 +266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackAnimationClip: {fileID: 7400000, guid: c4df9ea81612dc4478f3c02ece028386, type: 2}
   _attackCD: 3
-  _animator: {fileID: 0}
   _projectilePrefab: {fileID: 1865279856960219847, guid: c4f660877c774c34ab8fcb84ad4dc740, type: 3}
   _projectileSpawnOffset: 0.5
   _projectileParent: {fileID: 0}
@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3874809067682430494, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+      propertyPath: _healthComponent
+      value: 
+      objectReference: {fileID: 7020944706070372602}
     - target: {fileID: 8197633276276894218, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -475,8 +479,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
---- !u!224 &7568643597386667269 stripped
+--- !u!224 &2811839956533638426 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8197633276276894218, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4597973745125837333, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
   m_PrefabInstance: {fileID: 1786487903617269519}
   m_PrefabAsset: {fileID: 0}
