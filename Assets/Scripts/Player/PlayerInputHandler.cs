@@ -54,6 +54,7 @@ namespace BHSCamp
         private void HandleDeath()
         {
             _isDead = true;
+            _movable.SetVelocity(Vector2.zero, 0);
         }
     }
 }

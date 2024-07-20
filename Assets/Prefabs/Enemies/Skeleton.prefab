@@ -186,7 +186,6 @@ MonoBehaviour:
   _staggerTime: 0.5
   _respawn: 1
   _respawnTime: 3
-  _visual: {fileID: 0}
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -355,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e6cbfb9a7f3e7468884f980fec6cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _instantDamage: 5
+  _instantDamage: 20
   _knockbackApplied: 1
   _knockbackForce: 2
 --- !u!1001 &1027008949410010632

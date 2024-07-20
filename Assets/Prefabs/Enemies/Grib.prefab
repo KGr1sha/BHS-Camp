@@ -246,7 +246,6 @@ MonoBehaviour:
   _staggerTime: 1
   _respawn: 0
   _respawnTime: 0
-  _visual: {fileID: 0}
 --- !u!114 &5192371850183688560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e6cbfb9a7f3e7468884f980fec6cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _instantDamage: 5
+  _instantDamage: 20
   _knockbackApplied: 1
   _knockbackForce: 2
 --- !u!1001 &5722116134146724138
