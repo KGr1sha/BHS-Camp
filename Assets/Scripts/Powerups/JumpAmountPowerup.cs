@@ -10,6 +10,8 @@ namespace BHSCamp
         public override void Apply(GameObject target)
         {
             _jump = target.GetComponent<IJump>();
+            if (null == _jump) return;
+            
             _jump.IncreaseMaxAirJumps(_jumpAmountIncrease);
             base.Apply(target);
         }

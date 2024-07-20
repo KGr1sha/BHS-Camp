@@ -10,6 +10,8 @@ namespace BHSCamp
         public override void Apply(GameObject target)
         {
             _move = target.GetComponent<IMove>();
+            if (null == _move) return;
+            
             _move.SetVelocityMultiplier(_speedMultiplier);
             base.Apply(target);
         }

@@ -8,7 +8,8 @@ namespace BHSCamp
 
         public void Apply(GameObject target)
         {
-            GameManager.Instance.AddScore(_scoreToAdd);
+            if (false == target.GetComponent<Collider2D>().isTrigger) //чтобы монетки не собирались триггером атаки
+                GameManager.Instance.AddScore(_scoreToAdd);
         }
     }
 }
