@@ -14,8 +14,12 @@ namespace BHSCamp
         [SerializeField] protected float _staggerTime;
         [SerializeField] protected bool _respawn;
         [SerializeField] protected float _respawnTime;
+        [SerializeField] protected Transform _visual;
 
-        protected Rigidbody2D _body;
+        public Transform Visual
+        {
+            get { return _visual;}
+        }
         protected Health _health;
 
         protected Fsm _fsm;
@@ -35,7 +39,6 @@ namespace BHSCamp
 
         private void Awake()
         {
-            _body = GetComponent<Rigidbody2D>();
             _health = GetComponent<Health>();
         }
 

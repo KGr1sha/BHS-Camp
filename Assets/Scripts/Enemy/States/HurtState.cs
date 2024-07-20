@@ -12,7 +12,7 @@ namespace BHSCamp
         public HurtState(Fsm fsm, PatrolEnemy enemy, float exitTime) : base(fsm)
         {
             _exitTime = exitTime;
-            _animator = enemy.GetComponent<Animator>();
+            _animator = enemy.Visual.GetComponent<Animator>();
         }
 
         public override void Enter()

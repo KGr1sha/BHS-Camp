@@ -9,13 +9,12 @@ namespace BHSCamp
         [Header("Attack")]
         [SerializeField] protected LayerMask _playerLayerMask;
         [SerializeField] protected Vector2 _attackRange;
-        protected AttackBase _attack;
+        private AttackBase _attack;
         public bool CanAttack { get; private set; }
 
         private void Awake()
         {
             _attack = GetComponent<AttackBase>();
-            _body = GetComponent<Rigidbody2D>();
             _health = GetComponent<Health>();
         }
 
