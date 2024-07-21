@@ -5,7 +5,7 @@ namespace BHSCamp.FSM
 {
     public class Fsm
     {
-        private FsmState CurrentState { get; set; }
+        public FsmState CurrentState { get; private set; }
         private Dictionary<Type, FsmState> _states = new();
 
         public void AddState(FsmState state)
