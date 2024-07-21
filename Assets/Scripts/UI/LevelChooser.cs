@@ -13,6 +13,7 @@ public class LevelChooser : MonoBehaviour
     [SerializeField] private Image _levelPreviewImage;
     [SerializeField] private TMP_Text _levelNameText;
     [SerializeField] private Button _playButton;
+    [SerializeField] private Image _lockImage;
 
     private int _currentLevelIndex = 0;
 
@@ -25,7 +26,8 @@ public class LevelChooser : MonoBehaviour
     {
         _levelPreviewImage.sprite = _levels[_currentLevelIndex].LevelPreview;
         _levelNameText.text = _levels[_currentLevelIndex].LevelName;
-        _playButton.interactable = _levels[_currentLevelIndex].IsAccesible;
+        _playButton.gameObject.SetActive(_levels[_currentLevelIndex].IsAccesible);
+        _lockImage.enabled = false == _levels[_currentLevelIndex].IsAccesible;
     }
 
     public void ShowPreviousLevel() => ShowLevel(
