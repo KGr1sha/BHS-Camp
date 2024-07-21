@@ -38,6 +38,7 @@ namespace BHSCamp
 
         private void Fall()
         {
+            _body.excludeLayers = LayerMask.GetMask("Player");
             //включаем симуляцию физики для RigidBody2D
             _body.bodyType = RigidbodyType2D.Dynamic;
             //включаем непрерывную проверку коллизий чтобы объект никуда не проваливался

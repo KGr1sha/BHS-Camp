@@ -1,10 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelPreviewData", menuName = "Levels/Preview")]
-public class LevelPreviewData : ScriptableObject
+namespace BHSCamp.UI
 {
-    public Sprite LevelPreview;
-    public string LevelName;
-    public int CorrespondingSceneIndex;
-    public bool IsAccesible;
+    [CreateAssetMenu(fileName = "LevelPreviewData", menuName = "Levels/Preview")]
+    public class LevelPreviewData : ScriptableObject
+    {
+        public Sprite LevelPreview;
+        public string LevelName;
+        public int CorrespondingSceneIndex;
+        public bool IsAccesible;
+    }
 }

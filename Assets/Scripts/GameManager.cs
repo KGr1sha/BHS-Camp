@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using BHSCamp.UI;
 
 namespace BHSCamp
 {

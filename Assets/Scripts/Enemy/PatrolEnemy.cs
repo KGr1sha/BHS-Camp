@@ -69,13 +69,12 @@ namespace BHSCamp
 
         protected virtual void HandleHit(int damage)
         {
-            if (0 != _health.CurrentHealth)
-                _fsm.SetState<HurtState>();
+            _fsm.SetState<HurtState>();
         }
 
         protected virtual void HandleDeath()
         {
-            _fsm.SetState<DeadState>();
+            //_fsm.SetState<DeadState>();
         }
     }
 }
