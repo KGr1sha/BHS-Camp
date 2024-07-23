@@ -20,7 +20,7 @@ namespace BHSCamp
         public static void UnlockCompletedLevels()
         {
             int index = PlayerPrefs.GetInt(MaxCompletedLevelKey, 0);
-            IEnumerable<LevelPreviewData> accesibleLevels = _levels.Take(index + 1);
+            IEnumerable<LevelPreviewData> accesibleLevels = _levels.Take(index + 2);
 
             foreach (var level in accesibleLevels)
             {
