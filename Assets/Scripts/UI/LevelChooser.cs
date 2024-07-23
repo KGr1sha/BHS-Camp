@@ -1,19 +1,22 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace BHSCamp.UI
 {
     public class LevelChooser : MonoBehaviour
     {
-        [Header("Levels Data")] [SerializeField]
-        private LevelPreviewData[] _levels;
+        [Header("Levels Data")]
+        [SerializeField] private LevelPreviewData[] _levels;
 
-        [Header("UI fields")] [SerializeField] private Image _levelPreviewImage;
-        [SerializeField] private TMP_Text _levelNameText;
+        [FormerlySerializedAs("_levelPreview")]
+        [Header("UI fields")] 
+        [SerializeField] private Image _preview;
+        [SerializeField] private TMP_Text _nameText;
         [SerializeField] private Button _playButton;
-        [SerializeField] private Image _lockImage;
+        [SerializeField] private Image _lock;
 
         private int _currentLevelIndex = 0;
 
@@ -24,10 +27,11 @@ namespace BHSCamp.UI
 
         private void ShowLevel(int index)
         {
-            _levelPreviewImage.sprite = _levels[_currentLevelIndex].LevelPreview;
-            _levelNameText.text = _levels[_currentLevelIndex].LevelName;
-            _playButton.gameObject.SetActive(_levels[_currentLevelIndex].IsAccesible);
-            _lockImage.enabled = false == _levels[_currentLevelIndex].IsAccesible;
+            LevelPreviewData level = _levels[index];
+            _preview.sprite = level.Preview;
+            _nameText.text = level.Name;
+            _playButton.gameObject.SetActive(level.IsAccesible);
+            _lock.enabled = false == level.IsAccesible;
         }
 
         public void ShowPreviousLevel() => ShowLevel(
@@ -40,7 +44,7 @@ namespace BHSCamp.UI
 
         public void LoadChoosenLevel()
         {
-            SceneManager.LoadScene(_levels[_currentLevelIndex].CorrespondingSceneIndex);
+            SceneManager.LoadScene(_levels[_currentLevelIndex].SceneIndex);
             GameManager.Instance.SetLevelIndex(_currentLevelIndex);
         }
     }

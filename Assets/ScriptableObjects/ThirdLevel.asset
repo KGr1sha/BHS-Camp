@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9575107ee88a17447adf2d310479f003, type: 3}
   m_Name: ThirdLevel
   m_EditorClassIdentifier: 
-  LevelPreview: {fileID: 21300000, guid: 9a90cdc3db01e904f8833596731ea0b6, type: 3}
-  LevelName: Mario
-  CorrespondingSceneIndex: 3
+  Preview: {fileID: 21300000, guid: 878d3e1e96e78274c8132a382266d961, type: 3}
+  Name: Goose dick
+  SceneIndex: 3
   IsAccesible: 0

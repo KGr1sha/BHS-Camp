@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9575107ee88a17447adf2d310479f003, type: 3}
   m_Name: Firstlevel
   m_EditorClassIdentifier: 
-  LevelPreview: {fileID: 21300000, guid: 118035d8634851b4488195b4a306430b, type: 3}
-  LevelName: Amogus
-  CorrespondingSceneIndex: 1
+  Preview: {fileID: 21300000, guid: 74038c8ba6f6eae438164b274cbd37e0, type: 3}
+  Name: Dunes
+  SceneIndex: 1
   IsAccesible: 1
