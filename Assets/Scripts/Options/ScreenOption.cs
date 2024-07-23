@@ -13,8 +13,8 @@ public class ScreenOption : MonoBehaviour
     private readonly List<Resolution> resolutions = new();
 
     List<string> screenModeOptions = new() {
-            "Окно",
-            "Полный экран",
+            "РћРєРЅРѕ",
+            "РџРѕР»РЅС‹Р№ СЌРєСЂР°РЅ",
         };
 
     private void Start()
