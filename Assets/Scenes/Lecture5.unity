@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 420877398}
   - component: {fileID: 420877399}
   - component: {fileID: 420877400}
+  - component: {fileID: 420877404}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -602,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5671569395c47cd428b2d7ef71475307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _defaultMaxHealth: 100
 --- !u!114 &420877399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackAnimationClip: {fileID: 7400000, guid: daf736c0329f0c04c93927c22bab234a, type: 2}
   _attackCD: 0.1
+  _damageDealer: {fileID: 0}
 --- !u!114 &420877400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +717,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &420877404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420877384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0560854de7494ca4f5a80382c89a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &423037212
 GameObject:
   m_ObjectHideFlags: 0
@@ -6048,6 +6062,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1740594796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1740594798}
+  - component: {fileID: 1740594797}
+  m_Layer: 0
+  m_Name: DifficultyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1740594797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740594796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b583461560b40d987bfa2cb8b1ef1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Difficulty: {fileID: 11400000, guid: 2eafd40910a726d4ba2b72540215ac61, type: 2}
+--- !u!4 &1740594798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740594796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1800199898
 GameObject:
   m_ObjectHideFlags: 0
@@ -6625,6 +6684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 2036144561660125165, guid: 9cbe946747ad1ca49856ae15e568ccd1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5112242658945215748, guid: 9cbe946747ad1ca49856ae15e568ccd1, type: 3}
       propertyPath: _waypoints.Array.data[0]
       value: 
@@ -6999,6 +7062,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grib
       objectReference: {fileID: 0}
+    - target: {fileID: 879504016260030928, guid: 6db278d402b95c847a405e56770ddb95, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1734916628478035292, guid: 6db278d402b95c847a405e56770ddb95, type: 3}
       propertyPath: _waypoints.Array.data[0]
       value: 
@@ -7129,6 +7196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 2380704492759187655, guid: 2d2a0de2a59185f44a0503854eaf8120, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3503675423346234795, guid: 2d2a0de2a59185f44a0503854eaf8120, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.3
@@ -7205,3 +7276,4 @@ SceneRoots:
   - {fileID: 1166145988}
   - {fileID: 1287459228}
   - {fileID: 1403706933}
+  - {fileID: 1740594798}

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5112242658945215748}
   - component: {fileID: 6247165577591891426}
   - component: {fileID: 8383099696394366802}
+  - component: {fileID: 1532063721422081634}
   m_Layer: 0
   m_Name: FlyingMonster
   m_TagString: Untagged
@@ -277,6 +278,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b093eaa7571537d4eb0490e45fdd4f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1532063721422081634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036144561660125165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04b7c339b134b358bb8f263ba57e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1786487903617269519

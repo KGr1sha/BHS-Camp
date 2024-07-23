@@ -4,6 +4,13 @@ namespace BHSCamp
 {
     public class MeleeAttack : AttackBase
     {
+        [SerializeField] InstantDamageDealer _damageDealer;
+
+        public override void SetDamageMultiplier(float multiplier)
+        {
+            _damageDealer.SetDamageMultiplier(multiplier);
+        }
+
         public override void BeginAttack()
         {
             if (IsAttacking) return;

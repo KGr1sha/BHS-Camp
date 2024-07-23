@@ -12,10 +12,12 @@ namespace BHSCamp
         protected Animator _animator;
         protected Vector3 _target;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             _animator = GetComponent<Animator>();
         }
+
+        public abstract void SetDamageMultiplier(float multiplier);
 
         public virtual void BeginAttack()
         {

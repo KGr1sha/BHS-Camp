@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 641261479352244112}
   - component: {fileID: 5467646999028261748}
   - component: {fileID: 9189713818328112366}
+  - component: {fileID: 980118415200451208}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -217,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackAnimationClip: {fileID: 7400000, guid: 866714ad6e7abee4d9b1073eb8514db2, type: 2}
   _attackCD: 2
+  _damageDealer: {fileID: 7586425678290043685}
 --- !u!114 &641261479352244112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +266,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &980118415200451208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2380704492759187655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04b7c339b134b358bb8f263ba57e36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6881860611439460498
 GameObject:
   m_ObjectHideFlags: 0

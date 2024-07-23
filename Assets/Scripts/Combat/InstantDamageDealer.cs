@@ -10,14 +10,19 @@ namespace BHSCamp
         [SerializeField] private bool _knockbackApplied;
         [SerializeField] private float _knockbackForce;
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            DealInstantDamage(collision.gameObject.GetComponent<IDamageable>());
+            DealInstantDamage(other.gameObject.GetComponent<IDamageable>());
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            DealInstantDamage(collider.GetComponent<IDamageable>());
+            DealInstantDamage(other.GetComponent<IDamageable>());
+        }
+        
+        public void SetDamageMultiplier(float multiplier)
+        {
+            _instantDamage = (int)(_instantDamage * multiplier);
         }
 
         private void DealInstantDamage(IDamageable damageable)

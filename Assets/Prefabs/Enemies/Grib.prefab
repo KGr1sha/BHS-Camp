@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3675793849923116467}
   - component: {fileID: 1734916628478035292}
   - component: {fileID: 5192371850183688560}
+  - component: {fileID: 4048925995647509869}
   m_Layer: 0
   m_Name: Grib
   m_TagString: Untagged
@@ -261,6 +262,18 @@ MonoBehaviour:
   _instantDamage: 10
   _knockbackApplied: 1
   _knockbackForce: 3
+--- !u!114 &4048925995647509869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879504016260030928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04b7c339b134b358bb8f263ba57e36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6929382264294130631
 GameObject:
   m_ObjectHideFlags: 0

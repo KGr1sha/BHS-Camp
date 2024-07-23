@@ -7,6 +7,12 @@ namespace BHSCamp
         [SerializeField] private Projectile _projectilePrefab; // префаб проджектайла
         [SerializeField] private float _projectileSpawnOffset; // отступ, на котором будет спавниться проджектайл
         [SerializeField] private Transform _projectileParent;
+        private float _damageMultiplier = 1f;
+
+        public override void SetDamageMultiplier(float multiplier)
+        {
+            _damageMultiplier = multiplier;
+        }
 
         public override void BeginAttack()
         {
@@ -28,6 +34,7 @@ namespace BHSCamp
                 _projectileParent
             );
             projectile.SetDirection(toTarget);
+            projectile.SetDamageMultiplier(_damageMultiplier);
         }
     }
 }
