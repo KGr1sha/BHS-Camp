@@ -9,5 +9,6 @@ namespace BHSCamp.UI
         public string Name;
         public int SceneIndex;
         public bool IsAccesible;
+        public int  GemsAmount;
     }
 }

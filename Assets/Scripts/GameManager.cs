@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using BHSCamp.UI;
@@ -13,6 +14,8 @@ namespace BHSCamp
 
         [SerializeField] private LevelPreviewData[] _levels;
         private int _currentLevelIndex;
+        
+        private int _coinsCollectedOnLevel;
 
         public int Score
         {
@@ -20,6 +23,8 @@ namespace BHSCamp
         }
         private int _score;
 
+        private const string MaxLevelPlayerPref = "MaxLevel";
+        
         private void Awake()
         {
             if (Instance != null)
@@ -32,6 +37,27 @@ namespace BHSCamp
             DontDestroyOnLoad(gameObject);
         }
 
+        private void Start()
+        {
+            UnlockCompletedLevels();
+        }
+
+        private void UnlockCompletedLevels()
+        {
+            var index = PlayerPrefs.GetInt(MaxLevelPlayerPref, 0);
+            var accessibleLevels = _levels.Take(index + 1);
+
+            foreach (var level in accessibleLevels)
+            {
+                level.IsAccesible = true;
+            }
+        }
+
+        private void SaveMaxAchievedLevelIndex(int levelIndex)
+        {
+            PlayerPrefs.SetInt(MaxLevelPlayerPref, levelIndex);
+        }
+
         public void AddScore(int amount)
         {
             if (amount < 0)
@@ -40,10 +66,14 @@ namespace BHSCamp
                 );
             _score += amount;
             OnScoreChanged?.Invoke();
+            _coinsCollectedOnLevel++;
         }
 
         public void FinishCurrentLevel()
         {
+            SaveLevelHighscore();
+            SaveMaxAchievedLevelIndex(_currentLevelIndex);
+            _coinsCollectedOnLevel = 0;
             SceneManager.LoadScene(0); //Back to main menu
             OpenAccessToNextlevel();
         }
@@ -59,6 +89,12 @@ namespace BHSCamp
         public void SetLevelIndex(int newIndex)
         {
             _currentLevelIndex = newIndex;
+        }
+
+        private void SaveLevelHighscore()
+        {
+            if (PlayerPrefs.GetInt(LevelChooser.CollectedGemsPref, 0) < _coinsCollectedOnLevel)
+                PlayerPrefs.SetInt(LevelChooser.CollectedGemsPref, _coinsCollectedOnLevel);
         }
     }
 }
