@@ -7,6 +7,7 @@ namespace BHSCamp
 {
     public class GameManager : MonoBehaviour
     {
+        //lecture 7
         public static GameManager Instance { get; private set; }
         public static event Action OnScoreChanged;
 
