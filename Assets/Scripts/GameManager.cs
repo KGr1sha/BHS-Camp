@@ -15,16 +15,12 @@ namespace BHSCamp
         [SerializeField] private LevelPreviewData[] _levels;
         private int _currentLevelIndex;
         
-        private int _coinsCollectedOnLevel;
-
         public int Score
         {
             get { return _score; }
         }
         private int _score;
 
-        private const string MaxLevelPlayerPref = "MaxLevel";
-        
         private void Awake()
         {
             if (Instance != null)
@@ -39,23 +35,8 @@ namespace BHSCamp
 
         private void Start()
         {
-            UnlockCompletedLevels();
-        }
-
-        private void UnlockCompletedLevels()
-        {
-            var index = PlayerPrefs.GetInt(MaxLevelPlayerPref, 0);
-            var accessibleLevels = _levels.Take(index + 1);
-
-            foreach (var level in accessibleLevels)
-            {
-                level.IsAccesible = true;
-            }
-        }
-
-        private void SaveMaxAchievedLevelIndex(int levelIndex)
-        {
-            PlayerPrefs.SetInt(MaxLevelPlayerPref, levelIndex);
+            SaveLoadSystem.Initialize(_levels);
+            SaveLoadSystem.UnlockCompletedLevels();
         }
 
         public void AddScore(int amount)
@@ -66,35 +47,24 @@ namespace BHSCamp
                 );
             _score += amount;
             OnScoreChanged?.Invoke();
-            _coinsCollectedOnLevel++;
         }
 
         public void FinishCurrentLevel()
         {
-            SaveLevelHighscore();
-            SaveMaxAchievedLevelIndex(_currentLevelIndex);
-            _coinsCollectedOnLevel = 0;
+            SaveLoadSystem.SaveLevel(_currentLevelIndex);
             SceneManager.LoadScene(0); //Back to main menu
             OpenAccessToNextlevel();
         }
 
         private void OpenAccessToNextlevel()
         {
-            if (_currentLevelIndex + 1 == _levels.Length)
-                return;
-
-            _levels[_currentLevelIndex + 1].IsAccesible = true;
+            if (_currentLevelIndex + 1 < _levels.Length)
+                _levels[_currentLevelIndex + 1].IsAccesible = true;
         }
 
         public void SetLevelIndex(int newIndex)
         {
             _currentLevelIndex = newIndex;
-        }
-
-        private void SaveLevelHighscore()
-        {
-            if (PlayerPrefs.GetInt(LevelChooser.CollectedGemsPref, 0) < _coinsCollectedOnLevel)
-                PlayerPrefs.SetInt(LevelChooser.CollectedGemsPref, _coinsCollectedOnLevel);
         }
     }
 }

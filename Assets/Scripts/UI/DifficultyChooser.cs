@@ -9,7 +9,6 @@ namespace BHSCamp.UI
     {
         [SerializeField] private TMP_Dropdown _difficultyDropdown;
         private List<DifficultyData> _difficulties => DifficultyManager.Instance.Difficulties;
-        private const string DIFFICULTY_KEY = "Difficulty";
 
         private void Start()
         {
@@ -20,15 +19,14 @@ namespace BHSCamp.UI
             _difficultyDropdown.ClearOptions();
             _difficultyDropdown.AddOptions(difficultyNames.ToList());
             _difficultyDropdown.RefreshShownValue();
-            if (PlayerPrefs.HasKey(DIFFICULTY_KEY))
-                _difficultyDropdown.value = PlayerPrefs.GetInt(DIFFICULTY_KEY);
+            _difficultyDropdown.value = SaveLoadSystem.LoadDifficulty();
+            DifficultyManager.Instance.SetDifficulty(_difficulties[_difficultyDropdown.value]);
         }
 
         public void SaveDifficulty()
         {
             DifficultyManager.Instance.SetDifficulty(_difficulties[_difficultyDropdown.value]);
-            PlayerPrefs.SetInt(DIFFICULTY_KEY, _difficultyDropdown.value);
-            PlayerPrefs.Save();
+            SaveLoadSystem.SaveDifficulty(_difficultyDropdown.value);
         }
     }
 }

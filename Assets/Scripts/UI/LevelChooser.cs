@@ -1,8 +1,6 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace BHSCamp.UI
@@ -12,7 +10,6 @@ namespace BHSCamp.UI
         [Header("Levels Data")]
         [SerializeField] private LevelPreviewData[] _levels;
 
-        [FormerlySerializedAs("_levelPreview")]
         [Header("UI fields")] 
         [SerializeField] private Image _preview;
         [SerializeField] private TMP_Text _nameText;
@@ -20,10 +17,7 @@ namespace BHSCamp.UI
         [SerializeField] private Button _playButton;
         [SerializeField] private Image _lock;
 
-        private int _currentLevelIndex = 0;
-
-        private const string CollectedGemsPrefBase = "collectedGems";
-        public static string CollectedGemsPref;
+        private int _currentLevelIndex;
         
         private void OnEnable()
         {
@@ -38,9 +32,9 @@ namespace BHSCamp.UI
             _playButton.gameObject.SetActive(level.IsAccesible);
             _lock.enabled = false == level.IsAccesible;
 
-            CollectedGemsPref = CollectedGemsPrefBase + index.ToString();
-            var collectedGems = PlayerPrefs.GetInt(CollectedGemsPref, 0);
-            _highscoreText.text = $"{collectedGems}/{_levels[index].GemsAmount} собрано";
+            var collectedGems = SaveLoadSystem.LoadHighscore(index);
+            _highscoreText.text = $"{collectedGems}/{_levels[index].GemsAmount}";
+            
         }
 
         public void ShowPreviousLevel() => ShowLevel(
@@ -53,7 +47,6 @@ namespace BHSCamp.UI
 
         public void LoadChoosenLevel()
         {
-            CollectedGemsPref = CollectedGemsPrefBase + _currentLevelIndex.ToString();
             SceneManager.LoadScene(_levels[_currentLevelIndex].SceneIndex);
             GameManager.Instance.SetLevelIndex(_currentLevelIndex);
         }
