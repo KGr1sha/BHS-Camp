@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,11 @@ namespace BHSCamp
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void Start()
+        {
+            SetDifficulty(_difficulties[SaveLoadSystem.LoadDifficulty()]);
         }
 
         public void SetDifficulty(DifficultyData difficulty)

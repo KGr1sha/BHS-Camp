@@ -8,9 +8,9 @@ namespace BHSCamp
     public static class SaveLoadSystem
     {
         private const string CollectedGemsKey = "CollectedGems";
-        private static LevelPreviewData[] _levels;
         private const string MaxCompletedLevelKey = "MaxLevel";
         private const string DifficultyKey = "Difficulty";
+        private static LevelPreviewData[] _levels;
         
         public static void Initialize(LevelPreviewData[] levels)
         {
@@ -37,11 +37,6 @@ namespace BHSCamp
         public static void SaveDifficulty(int difficultyIndex)
         {
             PlayerPrefs.SetInt(DifficultyKey, difficultyIndex);
-        }
-
-        public static int LoadMaxCompletedLevel()
-        {
-            return PlayerPrefs.GetInt(MaxCompletedLevelKey, 0);
         }
 
         public static int LoadHighscore(int levelIndex)

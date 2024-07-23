@@ -32,9 +32,8 @@ namespace BHSCamp.UI
             _playButton.gameObject.SetActive(level.IsAccesible);
             _lock.enabled = false == level.IsAccesible;
 
-            var collectedGems = SaveLoadSystem.LoadHighscore(index);
+            int collectedGems = SaveLoadSystem.LoadHighscore(index);
             _highscoreText.text = $"{collectedGems}/{_levels[index].GemsAmount}";
-            
         }
 
         public void ShowPreviousLevel() => ShowLevel(
