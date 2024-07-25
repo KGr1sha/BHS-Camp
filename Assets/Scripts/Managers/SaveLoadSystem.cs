@@ -1,22 +1,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using BHSCamp.UI;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace BHSCamp
 {
+    public struct SoundSettings
+    {
+        public float Master;
+        public float SFX;
+        public float Music;
+    }
+    
     public static class SaveLoadSystem
     {
         private const string CollectedGemsKey = "CollectedGems";
         private const string MaxCompletedLevelKey = "MaxLevel";
         private const string DifficultyKey = "Difficulty";
+        public const string MasterVolumeKey = "MasterVolume";
+        public const string MusicVolumeKey = "MusicVolume";
+        public const string SFXVolumeKey = "SFXVolume";
         private static LevelPreviewData[] _levels;
         
         public static void Initialize(LevelPreviewData[] levels)
         {
             _levels = levels;
         }
+        
+        public static void SaveSound(SoundSettings settings)
+        {
+            PlayerPrefs.SetFloat(MasterVolumeKey, settings.Master);
+            PlayerPrefs.SetFloat(SFXVolumeKey, settings.SFX);
+            PlayerPrefs.SetFloat(MusicVolumeKey, settings.Music);
+        }
 
+        public static SoundSettings LoadSound()
+        {
+            SoundSettings sound = new();
+            sound.Master = PlayerPrefs.GetFloat(MasterVolumeKey, 1f);
+            sound.SFX = PlayerPrefs.GetFloat(SFXVolumeKey, 1f);
+            sound.Music = PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
+            return sound;
+        }
+        
         public static void UnlockCompletedLevels()
         {
             int index = PlayerPrefs.GetInt(MaxCompletedLevelKey, 0);
