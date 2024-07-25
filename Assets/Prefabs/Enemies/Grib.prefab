@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5671569395c47cd428b2d7ef71475307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 50
+  _defaultMaxHealth: 0
 --- !u!114 &5859190298994130756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +387,22 @@ PrefabInstance:
       propertyPath: _healthComponent
       value: 
       objectReference: {fileID: 3450701483579209076}
+    - target: {fileID: 4597973745125837333, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.9774
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597973745125837333, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.1322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597973745125837333, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.039
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597973745125837333, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.452
+      objectReference: {fileID: 0}
     - target: {fileID: 8197633276276894218, guid: a5078ca0546760a49a0737dd299f01d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

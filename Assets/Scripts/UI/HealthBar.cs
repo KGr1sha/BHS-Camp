@@ -29,6 +29,7 @@ namespace BHSCamp.UI
 
         private void UpdateHealthBar(int healthChange)
         {
+            print(_healthComponent.CurrentHealth);
             SetFill(
                 (float)_healthComponent.CurrentHealth /
                 _healthComponent.MaxHealth

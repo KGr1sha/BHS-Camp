@@ -6,6 +6,7 @@ namespace BHSCamp
     {
         [SerializeField] private float _speed;
         private PlayerAnimation _animation;
+        private CharacterSound _sound;
         private float _horizontal;
         private IMove _movable;
         private IJump _jump;
@@ -32,6 +33,7 @@ namespace BHSCamp
             _ground = GetComponent<Ground>();
             _health = GetComponent<Health>();
             _animation = GetComponent<PlayerAnimation>();
+            _sound = GetComponent<CharacterSound>();
         }
 
         private void Update()
@@ -43,12 +45,16 @@ namespace BHSCamp
             _horizontal = _attack.IsAttacking && _ground.OnGround? 0 : _horizontal;
             _movable.SetVelocity(new Vector2(_horizontal, 0), _speed);
             _animation.SetInputX(_horizontal);
+            _sound.SetInputX(_horizontal);
 
             if (Input.GetButtonDown("Attack"))
                 _attack.BeginAttack();
 
             if (Input.GetButtonDown("Jump"))
+            {
                 _jump.Action();
+                _sound.PlayJumpSound();
+            }
         }
 
         private void HandleDeath()

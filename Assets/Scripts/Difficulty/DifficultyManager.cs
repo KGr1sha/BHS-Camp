@@ -23,12 +23,8 @@ namespace BHSCamp
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
-        private void Start()
-        {
             SetDifficulty(_difficulties[SaveLoadSystem.LoadDifficulty()]);
+            DontDestroyOnLoad(gameObject);
         }
 
         public void SetDifficulty(DifficultyData difficulty)
