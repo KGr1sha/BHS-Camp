@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace BHSCamp
@@ -5,6 +6,9 @@ namespace BHSCamp
     public class Ground : MonoBehaviour
     {
         public bool OnGround { get; private set; }
+
+        public event Action OnLand;
+        
         public float Friction { get; private set; }
 
         private Vector2 _normal;
@@ -20,6 +24,11 @@ namespace BHSCamp
         {
             EvaluateCollision(collision);
             RetrieveFriction(collision);
+            
+            if (OnGround)
+            {
+                OnLand.Invoke();
+            }
         }
 
         private void OnCollisionStay2D(Collision2D collision)
