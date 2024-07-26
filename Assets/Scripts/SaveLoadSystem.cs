@@ -10,11 +10,30 @@ namespace BHSCamp
         private const string CollectedGemsKey = "CollectedGems";
         private const string MaxCompletedLevelKey = "MaxLevel";
         private const string DifficultyKey = "Difficulty";
+        private const string MasterVolumeKey = "Master";
+        private const string MusicVolumeKey = "Music";
+        private const string SFXVolumeKey = "SFX";
         private static LevelPreviewData[] _levels;
         
         public static void Initialize(LevelPreviewData[] levels)
         {
             _levels = levels;
+        }
+
+        public static void SaveSound(SoundSettings settings)
+        {
+            PlayerPrefs.SetFloat(MasterVolumeKey, settings.Master);
+            PlayerPrefs.SetFloat(MusicVolumeKey, settings.Music);
+            PlayerPrefs.SetFloat(SFXVolumeKey, settings.SFX);
+        }
+
+        public static SoundSettings LoadSound()
+        {
+            SoundSettings sound = new();
+            sound.Master = PlayerPrefs.GetFloat(MasterVolumeKey, 1);
+            sound.Music = PlayerPrefs.GetFloat(MusicVolumeKey, 1);
+            sound.SFX = PlayerPrefs.GetFloat(SFXVolumeKey, 1);
+            return sound;
         }
 
         public static void UnlockCompletedLevels()
