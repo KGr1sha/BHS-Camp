@@ -599,7 +599,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847613726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 354d6ec66b1d2074f80d026b0394ac09, type: 3}
   m_Name: 
@@ -607,7 +607,7 @@ MonoBehaviour:
   _pool: {fileID: 1005105273}
   _parent: {fileID: 764634272}
   _shootTimeout: 2
-  _bulletAmount: 200
+  _bulletAmount: 1500
 --- !u!114 &847613730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847613726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb42b264b8b34e71b3fd44e6ceeb785d, type: 3}
   m_Name: 
@@ -623,7 +623,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 4740416630288751595, guid: 544f43a7741924840b4661802fab5f24, type: 3}
   _parent: {fileID: 764634272}
   _shootTimeout: 2
-  _bulletAmount: 200
+  _bulletAmount: 500
 --- !u!1 &1005105271
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _object: {fileID: 6063865112034766970, guid: 544f43a7741924840b4661802fab5f24, type: 3}
-  _capacity: 10
+  _capacity: 1500
 --- !u!1 &1365311366
 GameObject:
   m_ObjectHideFlags: 0
