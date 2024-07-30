@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 847613728}
   - component: {fileID: 847613727}
   - component: {fileID: 847613729}
+  - component: {fileID: 847613730}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -598,13 +599,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847613726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 354d6ec66b1d2074f80d026b0394ac09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pool: {fileID: 1005105273}
   _parent: {fileID: 764634272}
+  _shootTimeout: 2
+  _bulletAmount: 200
+--- !u!114 &847613730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847613726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb42b264b8b34e71b3fd44e6ceeb785d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 4740416630288751595, guid: 544f43a7741924840b4661802fab5f24, type: 3}
+  _parent: {fileID: 764634272}
+  _shootTimeout: 2
+  _bulletAmount: 200
 --- !u!1 &1005105271
 GameObject:
   m_ObjectHideFlags: 0

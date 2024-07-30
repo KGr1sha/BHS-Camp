@@ -21,6 +21,12 @@ namespace ObjectPooling
 
         public GameObject GetFromPool()
         {
+            if (_objects.Count == 0)
+            {
+                GameObject newObject = CreateObject();
+                return newObject;
+            }
+            
             var poolObject = _objects.Dequeue();
             poolObject.SetActive(true);
             return poolObject;
@@ -32,18 +38,16 @@ namespace ObjectPooling
             _objects.Enqueue(poolObject);
         }
         
-        public GameObject Add()
+        private GameObject CreateObject()
         {
-            var newObject = Instantiate(_object, _parent);
-            newObject.SetActive(false);
-            return newObject;
+            return Instantiate(_object, _parent);
         }
 
         private void CreateInstances()
         {
             for (int i = 0; i < _capacity; i++)
             {
-                var newObject = Instantiate(_object, _parent);
+                var newObject = CreateObject();
                 newObject.SetActive(false);
                 _objects.Enqueue(newObject);
             }

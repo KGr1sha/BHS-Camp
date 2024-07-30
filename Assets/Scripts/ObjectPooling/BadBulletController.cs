@@ -3,17 +3,15 @@ using UnityEngine;
 
 namespace ObjectPooling
 {
-    public class BulletController : MonoBehaviour
+    public class BadBulletController : MonoBehaviour
     {
-        [SerializeField] private ObjectPool _pool;
+        [SerializeField] private Bullet _bulletPrefab; 
         [SerializeField] private Transform _parent;
         [SerializeField] private float _shootTimeout;
         [SerializeField] private int _bulletAmount;
         
-    
         private void Start()
         {
-            _pool.Initialize(_parent);
             StartCoroutine(ShootOnTimer());
         }
         
@@ -35,18 +33,15 @@ namespace ObjectPooling
                         Random.Range(-1f, 1f)
                     );
                 
-                Bullet bullet = _pool.GetFromPool().GetComponent<Bullet>();
-                bullet.OnBulletHit += DisableBullet;
+                Bullet bullet = Instantiate(_bulletPrefab, _parent);
+                bullet.OnBulletHit += DestroyBullet;
                 bullet.SetDirection(randomDir.normalized);
             }
         }
-
-        private void DisableBullet(Bullet bullet)
+        
+        private void DestroyBullet(Bullet bullet)
         {
-            bullet.OnBulletHit -= DisableBullet;
-            bullet.transform.position = transform.position;
-            bullet.SetDirection(Vector2.zero);
-            _pool.ReturnToPool(bullet.gameObject);
+            Destroy(bullet.gameObject);
         }
     }
 }

@@ -3,11 +3,24 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private Vector2 _direction;
+    public event Action<Bullet> OnBulletHit;
     [SerializeField] private float _speed;
+    private Vector3 _direction;
+    private Rigidbody2D _rb;
 
-    private void Update()
+    private void Awake()
     {
-        transform.position += new Vector3(_direction.x, _direction.y, 0) * (_speed * Time.deltaTime);
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void SetDirection(Vector2 newDirection)
+    {
+        _direction = newDirection;
+        _rb.velocity = _direction * _speed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        OnBulletHit?.Invoke(this);
     }
 }
